@@ -23,9 +23,7 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        $user =User::role('Admin')->get();
-        dd($user);
+    { 
         return view('home');
     }
 }

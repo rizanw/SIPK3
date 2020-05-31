@@ -1,23 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.base')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+          <div class="container-fluid">
+            <div class="fade-in">
+ 
+              <!-- /.row-->
             </div>
-        </div>
-    </div>
-</div>
+          </div>
+
+@endsection
+
+@section('javascript')
+
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
+    <script src="{{ asset('js/coreui-chartjs.bundle.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}" defer></script>
 @endsection
