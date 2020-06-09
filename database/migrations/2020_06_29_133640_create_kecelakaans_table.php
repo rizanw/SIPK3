@@ -16,14 +16,17 @@ class CreateKecelakaansTable extends Migration
         Schema::create('kecelakaans', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kejadian');
-            $table->string('tempat_kejadian');
-            $table->string('tanggal_kejadian');
-            $table->string('jam_kejadian');
+            $table->string('lokasi');
+            $table->string('tanggal');
+            $table->string('waktu');
             $table->string('atasan_langsung_korban');
             $table->string('saksi');
-            $table->string('jumlah_korban');
-            $table->string('tanggal_laporan_dibuat');
-            $table->string('kronologi_kecelakaan');
+            $table->string('akibat');
+            $table->unsignedSmallInteger('jumlah_korban');
+            $table->string('kronologi');
+            $table->unsignedSmallInteger('resiko_keparahan');
+            $table->unsignedSmallInteger('resiko_kemungkinan');
+            $table->string('photo');
             $table->string('tindakan');
             $table->string('penanggung_jawab');
             $table->tinyInteger('status');
