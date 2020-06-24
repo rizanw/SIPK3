@@ -12,6 +12,8 @@ class AlatKebakaranApar extends Model
     protected $fillable = [
         'kode',
         'jenis',
+        'tipe',
+        'merk',
         'berat',
         'lokasi'
     ];

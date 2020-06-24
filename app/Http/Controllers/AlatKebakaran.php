@@ -70,6 +70,8 @@ class AlatKebakaran extends Controller
         $request->validate([
             'kode' => 'required',
             'jenis' => 'required',
+            'tipe' => 'required',
+            'merk' => 'required',
             'berat' => 'required|numeric',
             'lokasi' => 'required',
         ]);
@@ -78,6 +80,8 @@ class AlatKebakaran extends Controller
             $apar = AlatKebakaranApar::create([
                 'kode' => $request['kode'],
                 'jenis' => $request['jenis'],
+                'tipe' => $request['tipe'],
+                'merk' => $request['merk'],
                 'berat' => $request['berat'],
                 'lokasi' => $request['lokasi']
             ]);

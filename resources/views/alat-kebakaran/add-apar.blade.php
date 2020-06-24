@@ -18,11 +18,24 @@
                                            placeholder="ID APAR">
                                 </div>
                                 <div class="form-group">
+                                    <label for="lokasi">Lokasi APAR</label>
+                                    <input name="lokasi" class="form-control" id="lokasi" type="text"
+                                           placeholder="Lokasi letak APAR">
+                                </div>
+                                <div class="form-group">
                                     <label for="jenis">Jenis APAR</label>
                                     <select name="jenis" class="form-control" id="jenis">
                                         <option>Karbondioksida (CO2)</option>
-                                        <option>Dry Chemical Powder</option>
+                                        <option>Dry Powder</option>
                                         <option>Foam</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipe">Tipe APAR</label>
+                                    <select name="tipe" class="form-control" id="tipe">
+                                        <option>Store Pressure</option>
+                                        <option>Catridge</option>
+                                        <option>Gas</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -31,9 +44,9 @@
                                            placeholder="Berat APAR (dalam KG)">
                                 </div>
                                 <div class="form-group">
-                                    <label for="lokasi">Lokasi APAR</label>
-                                    <input name="lokasi" class="form-control" id="lokasi" type="text"
-                                           placeholder="Lokasi letak APAR">
+                                    <label for="merk">Merk APAR</label>
+                                    <input name="merk" class="form-control" id="merk" type="text"
+                                           placeholder="Merk APAR">
                                 </div>
                                 <hr/>
                                 <div>

@@ -16,9 +16,11 @@ class CreateAlatKebakaransTable extends Migration
         Schema::create('alat_kebakaran_apars', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kode');
-            $table->string('jenis');
-            $table->string('berat');
             $table->string('lokasi');
+            $table->string('jenis');
+            $table->string('tipe');
+            $table->string('berat');
+            $table->string('merk');
             $table->timestamps();
         });
 
