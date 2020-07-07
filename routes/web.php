@@ -28,15 +28,6 @@ Route::get('/inspeksi-kecelakaan/tambah', function () {
     return view('kecelakaan.add');
 })->name('kecelakaan.add');
 
-
-Route::get('/inspeksi-ketidaksesuaian', function () {
-    return view('ketidaksesuaian.index');
-})->name('ketidaksesuaian');
-
-Route::get('/inspeksi-ketidaksesuaian/tambah', function () {
-    return view('ketidaksesuaian.add');
-})->name('ketidaksesuaian.add');
-
 Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
     Route::get('/fetch', 'KebakaranAktif@fetch')->name('kebakaran.fetch');
@@ -62,4 +53,11 @@ Route::prefix('alat-kebakaran')->group(function () {
         Route::get('/tambah', 'AlatKebakaran@addHydrantIndex')->name('kebakaran.alat.hydrant');
         Route::post('/post', 'AlatKebakaran@createHydrant')->name('kebakaran.alat.hydrant.create');
     });
+});
+
+Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
+    Route::get('/', 'KetidaksesuaianController@index')->name('ketidaksesuaian');
+    Route::get('/fetch', 'KetidaksesuaianController@fetch')->name('ketidaksesuaian.fetch');
+    Route::get('/tambah', 'KetidaksesuaianController@indexAdd')->name('ketidaksesuaian.add');
+    Route::post('/post', 'KetidaksesuaianController@create')->name('ketidaksesuaian.create');
 });

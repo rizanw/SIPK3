@@ -19,11 +19,11 @@ class CreateKetidaksesuaiansTable extends Migration
             $table->date('tanggal');
             $table->string('kategori');
             $table->string('lokasi');
-            $table->string('photo');
-            $table->unsignedSmallInteger('resiko_keparahan');
-            $table->unsignedSmallInteger('resiko_kemungkinan');
-            $table->string('pic');
-            $table->string('pelapor');
+            $table->string('photo')->nullable();
+            $table->unsignedSmallInteger('resiko_keparahan')->nullable();
+            $table->unsignedSmallInteger('resiko_kemungkinan')->nullable();
+            $table->string('pic')->nullable();
+            $table->string('pelapor')->nullable();
             $table->string('tindakan');
             $table->tinyInteger('status');
             $table->timestamps();

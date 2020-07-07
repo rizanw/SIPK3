@@ -56,6 +56,8 @@
             alert("Row " + row.getData().id + " Clicked!!!!");
         },
     });
+    table.setData("{{route('ketidaksesuaian.fetch')}}");
+
 </script>
 
 @endsection
