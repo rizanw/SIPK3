@@ -46,16 +46,17 @@
         placeholder: "Tidak ada data kecelakaan",
         columns:[
             {title:"Kejadian", field:"kejadian", width:150},
-            {title:"Tempat", field:"tempat"},
+            {title:"Lokasi", field:"lokasi"},
             {title:"Tanggal", field:"tanggal"},
-            {title:"Jumlah Korban", field:"jumlahkorban", width: 150},
-            {title:"Penanggung Jawab", field:"penanggungjawab"},
+            {title:"Jumlah Korban", field:"korban", width: 150},
+            {title:"Penanggung Jawab", field:"pj"},
             {title:"Status", field:"status"},
         ],
         rowClick:function(e, row){ //trigger an alert message when the row is clicked
             alert("Row " + row.getData().id + " Clicked!!!!");
         },
     });
+    table.setData("{{route('kecelakaan.fetch')}}");
 </script>
 
 @endsection

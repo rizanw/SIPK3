@@ -20,14 +20,6 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/inspeksi-kecelakaan', function () {
-    return view('kecelakaan.index');
-})->name('kecelakaan');
-
-Route::get('/inspeksi-kecelakaan/tambah', function () {
-    return view('kecelakaan.add');
-})->name('kecelakaan.add');
-
 Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
     Route::get('/fetch', 'KebakaranAktif@fetch')->name('kebakaran.fetch');
@@ -60,4 +52,11 @@ Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
     Route::get('/fetch', 'KetidaksesuaianController@fetch')->name('ketidaksesuaian.fetch');
     Route::get('/tambah', 'KetidaksesuaianController@indexAdd')->name('ketidaksesuaian.add');
     Route::post('/post', 'KetidaksesuaianController@create')->name('ketidaksesuaian.create');
+});
+
+Route::prefix('inspeksi-kecelakaan')->group(function () {
+    Route::get('/', 'KecelakaanController@index')->name('kecelakaan');
+    Route::get('/fetch', 'KecelakaanController@fetch')->name('kecelakaan.fetch');
+    Route::get('/tambah', 'KecelakaanController@indexAdd')->name('kecelakaan.add');
+    Route::post('/post', 'KecelakaanController@create')->name('kecelakaan.create');
 });
