@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Kecelakaan;
+use App\KecelakaanKorban;
 use Illuminate\Http\Request;
 
 class KecelakaanController extends Controller
@@ -73,7 +74,7 @@ class KecelakaanController extends Controller
         ]);
 
         try {
-            Kecelakaan::create([
+            $kecelakaan = Kecelakaan::create([
                 'kejadian' => $request['kejadian'],
                 'lokasi' => $request['lokasi'],
                 'tanggal' => $request['tanggal'],
@@ -90,6 +91,16 @@ class KecelakaanController extends Controller
                 'penanggung_jawab' => $request['pj'],
                 'status' => $request['status'],
             ]);
+
+            for($i = 0; $i < count($request['nama-korban']); $i++){
+                KecelakaanKorban::create([
+                    'id_inspeksi' => $kecelakaan->id,
+                    'nama' => $request['nama-korban'][$i],
+                    'usia' => $request['usia-korban'][$i],
+                    'jenis_kelamin' => $request['jenis-kelamin'][$i],
+                ]);
+            }
+
         } catch (\Exception $exception) {
             dd($exception);
         }

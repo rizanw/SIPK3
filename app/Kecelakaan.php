@@ -26,4 +26,9 @@ class Kecelakaan extends Model
         'penanggung_jawab',
         'status',
     ];
+
+    public function korbans()
+    {
+        return $this->hasMany('App\KecelakaanKorban');
+    }
 }

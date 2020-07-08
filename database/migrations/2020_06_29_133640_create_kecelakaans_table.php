@@ -39,7 +39,6 @@ class CreateKecelakaansTable extends Migration
             $table->string('nama');
             $table->string('usia');
             $table->string('jenis_kelamin');
-            $table->string('akibat_yang_ditimbulkan');
 
             $table->foreign('id_inspeksi')
                 ->references('id')
