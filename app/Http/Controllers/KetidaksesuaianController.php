@@ -83,9 +83,10 @@ class KetidaksesuaianController extends Controller
                 'status' => $request['status'],
             ]);
         }catch (\Exception $exception) {
-            dd($exception);
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: Inspeksi Ketidaksesuaian berhasil dibuat!");
+        return redirect()->back()->with('success', "Berhasil: Inspeksi Ketidaksesuaian berhasil dibuat!");
     }
 }

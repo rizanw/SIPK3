@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <base href="./">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,37 +39,59 @@
 
 
     <link href="{{ asset('css/coreui-chartjs.css') }}" rel="stylesheet">
-  </head>
+</head>
 
 
+<body class="c-app">
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
 
-  <body class="c-app">
-    <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+    @include('layouts.nav-builder')
 
-      @include('layouts.nav-builder')
+    @include('layouts.header')
 
-      @include('layouts.header')
-
-      <div class="c-body">
-
+    <div class="c-body">
         <main class="c-main">
+            <div class="container-fluid">
+                @if ($errors->any())
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <h4 class="alert-heading">Isi data dengan benar!</h4>
+                        <hr>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('fail'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('fail') }}
+                    </div>
+                @endif
+            </div>
 
-          @yield('content')
-
+            @yield('content')
         </main>
         @include('layouts.footer')
-      </div>
     </div>
+</div>
 
 
+<!-- CoreUI and necessary plugins-->
+<script src="{{ asset('js/jquery.min.js') }}"></script>
+<script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
+<script src="{{ asset('js/coreui-utils.js') }}"></script>
+<script src="{{ asset('js/tabulator.min.js') }}"></script>
 
-    <!-- CoreUI and necessary plugins-->
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
-    <script src="{{ asset('js/coreui.bundle.min.js') }}"></script>
-    <script src="{{ asset('js/coreui-utils.js') }}"></script>
-    <script src="{{ asset('js/tabulator.min.js') }}"></script>
+@yield('javascript')
 
-    @yield('javascript')
-
-  </body>
+</body>
 </html>

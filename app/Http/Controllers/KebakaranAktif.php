@@ -101,10 +101,11 @@ class KebakaranAktif extends Controller
                 'i' => $request['i'],
             ]);
         } catch (\Exception $exception) {
-            dd($exception);
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: Inspeksi APAR berhasil dibuat!");
+        return redirect()->back()->with('success', "Berhasil: Inspeksi Kebakaran Aktif APAR berhasil ditambahkan!");
     }
 
     public function createHydrant(Request $request)
@@ -154,10 +155,11 @@ class KebakaranAktif extends Controller
                 'q' => $request['q'],
             ]);
         } catch (\Exception $exception) {
-            dd($exception);
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: Inspeksi Hydrant berhasil dibuat!");
+        return redirect()->back()->with('success', "Berhasil: Inspeksi Kebakaran Aktif Hydrant berhasil ditambahkan!");
     }
 
 }

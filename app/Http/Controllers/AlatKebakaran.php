@@ -87,10 +87,10 @@ class AlatKebakaran extends Controller
             ]);
         }catch (\Exception $exception){
             $errcode = $exception->getMessage();
-            dd($errcode);
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: APAR berhasil ditambahkan!");
+        return redirect()->back()->with('success', "Berhasil: APAR berhasil ditambahkan!");
     }
 
     public function createHydrant(Request $request)
@@ -107,9 +107,9 @@ class AlatKebakaran extends Controller
             ]);
         }catch (\Exception $exception){
             $errcode = $exception->getMessage();
-            dd($errcode);
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: Hydrant berhasil ditambahkan!");
+        return redirect()->back()->with('success', "Berhasil: Hydrant berhasil ditambahkan!");
     }
 }

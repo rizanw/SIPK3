@@ -102,9 +102,10 @@ class KecelakaanController extends Controller
             }
 
         } catch (\Exception $exception) {
-            dd($exception);
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('message', "Berhasil: Inspeksi Kecelakaan berhasil dibuat!");
+        return redirect()->back()->with('success', "Berhasil: Hydrant berhasil ditambahkan!");
     }
 }
