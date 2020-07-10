@@ -59,7 +59,7 @@ class KetidaksesuaianController extends Controller
             'tanggal' => 'required',
             'kategori' => 'required',
             'lokasi' => 'required',
-//            'foto' => 'required',
+            'foto' => 'mimes:jpeg,png,jpg|max:10024',
 //            'severity' => 'required',
 //            'likelihood' => 'required',
             'pic' => 'required',
@@ -69,12 +69,20 @@ class KetidaksesuaianController extends Controller
         ]);
 
         try {
+            $fotoPath = null;
+            if($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $ext = $foto->getClientOriginalExtension();
+
+                $fotoPath = $foto->storeAs('ketidaksesuian', time().str_replace(' ', '', $request['temuan']).'.'.$ext);
+            }
+
             Ketidaksesuaian::create([
                 'temuan' => $request['temuan'],
                 'tanggal' => $request['tanggal'],
                 'kategori' => $request['kategori'],
                 'lokasi' => $request['lokasi'],
-                'photo' => $request['foto'],
+                'photo' => $fotoPath,
                 'resiko_keparahan' => $request['severity'],
                 'resiko_kemungkinan' => $request['likelihood'],
                 'pic' => $request['pic'],
@@ -82,6 +90,7 @@ class KetidaksesuaianController extends Controller
                 'tindakan' => $request['tindakan'],
                 'status' => $request['status'],
             ]);
+
         }catch (\Exception $exception) {
             $errcode = $exception->getMessage();
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);

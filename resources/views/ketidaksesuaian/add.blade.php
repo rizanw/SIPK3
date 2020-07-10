@@ -8,7 +8,7 @@
                     <div class="card">
                         <div class="card-header"><strong>Buat</strong> <small>Inspeksi Ketidaksesuaian</small></div>
                         <div class="card-body">
-                            <form action="{{route('ketidaksesuaian.create')}}" method="post">
+                            <form action="{{route('ketidaksesuaian.create')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <h4 class="mb-3">Informasi Temuan</h4>
                                 <hr/>

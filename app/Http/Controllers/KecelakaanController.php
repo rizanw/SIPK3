@@ -67,13 +67,20 @@ class KecelakaanController extends Controller
             'kronologi' => 'required',
 //            'severity' => 'required',
 //            'likelihood' => 'required',
-//            'foto' => 'required',
+            'foto' => 'mimes:jpeg,png,jpg|max:10024',
             'tindakan' => 'required',
             'pj' => 'required',
             'status' => 'required',
         ]);
 
         try {
+            $fotoPath = null;
+            if($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $ext = $foto->getClientOriginalExtension();
+                $fotoPath = $foto->storeAs('kecelakaan', time().str_replace(' ', '', $request['kejadian']).'.'.$ext);
+            }
+
             $kecelakaan = Kecelakaan::create([
                 'kejadian' => $request['kejadian'],
                 'lokasi' => $request['lokasi'],
@@ -86,13 +93,15 @@ class KecelakaanController extends Controller
                 'kronologi' => $request['kronologi'],
                 'resiko_keparahan' => $request['severity'],
                 'resiko_kemungkinan' => $request['likelihood'],
-                'photo' => $request['foto'],
+                'photo' => $fotoPath,
                 'tindakan' => $request['tindakan'],
                 'penanggung_jawab' => $request['pj'],
                 'status' => $request['status'],
             ]);
 
             for($i = 0; $i < count($request['nama-korban']); $i++){
+                if($request['jumlahkorban'] == 0) break;
+
                 KecelakaanKorban::create([
                     'id_inspeksi' => $kecelakaan->id,
                     'nama' => $request['nama-korban'][$i],
@@ -106,6 +115,6 @@ class KecelakaanController extends Controller
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
 
-        return redirect()->back()->with('success', "Berhasil: Hydrant berhasil ditambahkan!");
+        return redirect()->back()->with('success', "Berhasil: Inspeksi Kecelakaan berhasil ditambahkan!");
     }
 }
