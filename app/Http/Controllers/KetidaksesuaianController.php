@@ -32,6 +32,13 @@ class KetidaksesuaianController extends Controller
         return view('ketidaksesuaian.add');
     }
 
+    public function indexDetail($id)
+    {
+        $data = Ketidaksesuaian::where('id', $id)->first();
+        return view('ketidaksesuaian.edit')
+            ->with('data', $data);
+    }
+
     public function fetch()
     {
         $ketidaksesuaians = Ketidaksesuaian::all();

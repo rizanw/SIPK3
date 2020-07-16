@@ -52,6 +52,7 @@ Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
     Route::get('/fetch', 'KetidaksesuaianController@fetch')->name('ketidaksesuaian.fetch');
     Route::get('/tambah', 'KetidaksesuaianController@indexAdd')->name('ketidaksesuaian.add');
     Route::post('/post', 'KetidaksesuaianController@create')->name('ketidaksesuaian.create');
+    Route::get('/{id}', 'KetidaksesuaianController@indexDetail')->name('ketidaksesuaian.detail');
 });
 
 Route::prefix('inspeksi-kecelakaan')->group(function () {
