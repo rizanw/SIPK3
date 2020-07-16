@@ -6,48 +6,97 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header"><strong>Detail</strong> <small>Inspeksi Ketidaksesuaian</small></div>
+                        <div class="card-header"><strong>Detail</strong> <small>Inspeksi Kecelakaan</small></div>
                         <div class="card-body">
-                            <form action="{{route('ketidaksesuaian.create')}}" method="post" enctype="multipart/form-data">
+                            <form action="{{route('kecelakaan.create')}}" method="post" enctype="multipart/form-data">
                                 @csrf
-                                <h4 class="mb-3">Informasi Temuan</h4>
+                                <h4 class="mb-3">Informasi Kejadian</h4>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="temuan">Temuan</label>
-                                    <input name="temuan" class="form-control" id="temuan" type="text"
-                                           placeholder="Deskripsi Temuan" value="{{$data->temuan}}" disabled>
+                                    <label for="kejadian">Kejadian</label>
+                                    <input name="kejadian" class="form-control" id="kejadian" type="text"
+                                           placeholder="Kejadian" value="{{$data->kejadian}}" disabled>
                                 </div>
                                 <div class="form-group">
-                                    <label for="tanggal">Tanggal Temuan</label>
-                                    <input name="tanggal" class="form-control" id="tanggal" type="date" value="{{$data->tanggal}}" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="kategori-temuan">Kategori Temuan</label>
-                                    <select name="kategori" class="form-control" id="kategori-temuan" disabled>
-                                        <option value="unsafe-action" @if($data->kategori == "unsafe-action") selected @endif>
-                                            Unsafe Action
-                                        </option>
-                                        <option value="unsafe-condition" @if($data->kategori == "unsafe-condition") selected @endif>
-                                            Unsafe Condition
-                                        </option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="lokasi">Lokasi</label>
+                                    <label for="lokasi">Lokasi Kejadian</label>
                                     <input name="lokasi" class="form-control" id="lokasi" type="text"
-                                           placeholder="Lokasi" value="{{$data->lokasi}}" disabled>
+                                           placeholder="Lokasi kejadian" value="{{$data->lokasi}}" disabled>
                                 </div>
-                                <h4 class="mb-3 mt-4">Foto</h4>
+                                <div class="form-group">
+                                    <label for="tanggal">Tanggal Kejadian</label>
+                                    <input name="tanggal" class="form-control" id="tanggal" type="date"
+                                           value="{{$data->tanggal}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jam">Jam Kejadian</label>
+                                    <input name="jam" class="form-control" id="jam" type="time" value="{{$data->waktu}}"
+                                           disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="alk">Atasan Langsung Korban</label>
+                                    <input name="alk" class="form-control" id="alk" type="text"
+                                           placeholder="Atasan Langsung Korban"
+                                           value="{{$data->atasan_langsung_korban}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="saksi">Saksi</label>
+                                    <input name="saksi" class="form-control" id="saksi" type="text"
+                                           placeholder="Saksi" value="{{$data->saksi}}" disabled>
+                                </div>
+                                <h4 class="mb-3 mt-4">Data Korban</h4>
                                 <hr/>
-                                <div class="form-group row">
-                                    <label class="col-md-3 col-form-label" for="foto">Upload foto kejadian</label>
-                                    <div class="col-md-9">
-                                        <input name="foto" id="foto" type="file" disabled>
-                                        @if($data->photo)
-                                            <?php $path = Storage::url($data->photo); ?>
-                                            <img width="480" src="{{ url($path) }}">
-                                        @endif
-                                    </div>
+                                <div class="list-data-korban">
+                                    @foreach($korbans as $korban)
+                                        <div class="row data-korban">
+                                            <div class="form-group col-sm-5">
+                                                <label for="nama-korban">Nama</label>
+                                                <input name="nama-korban[]" class="form-control" id="nama-korban"
+                                                       type="text" placeholder="Nama korban" value="{{$korban->nama}}" disabled>
+                                            </div>
+                                            <div class="form-group col-sm-3">
+                                                <label for="jenis-kelamin">Jenis Kelamin</label>
+                                                <select name="jenis-kelamin[]" class="form-control" id="jenis-kelamin" disabled>
+                                                    <option value="L" @if($korban->jenis_kelamin == "L") selected @endif>
+                                                        Laki-laki
+                                                    </option>
+                                                    <option value="P" @if($korban->jenis_kelamin == "P") selected @endif>
+                                                        Perempuan
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group col-sm-3">
+                                                <label for="usia-korban">Usia</label>
+                                                <input name="usia-korban[]" class="form-control" id="usia-korban"
+                                                       type="number" min="0" placeholder="Usia korban" value="{{$korban->usia}}" disabled>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-secondary" id="add-korban"
+                                           value="Tambah data korban" onclick="addKorban();">
+                                    <input type="button" class="btn btn-light" id="reduce-korban"
+                                           value="Kurangi data korban" onclick="reduceKorban();">
+                                </div>
+                                <div class="form-group">
+                                    <label for="akibat">Akibat Yang Ditimbulkan</label>
+                                    <input name="akibat" class="form-control" id="akibat" type="text"
+                                           placeholder="Akibat Yang Ditimbulkan" value="{{$data->akibat}}" disabled>
+                                </div>
+                                <div class="form-group">
+                                    <label for="jumlah-korban">Jumlah Korban</label>
+                                    <input name="jumlahkorban" class="form-control" id="jumlah-korban" type="number"
+                                           min="0" placeholder="Jumlah Korban" value="{{$data->jumlah_korban}}"
+                                           disabled>
+                                </div>
+                                <h4 class="mb-3 mt-4">Kronologi</h4>
+                                <hr/>
+                                <div class="form-group">
+                                    <label for="kronologi">Kronologi Terjadinya Kecelakaan</label>
+                                    <textarea name="kronologi" class="form-control" id="kronologi" rows="6"
+                                              placeholder="Tuliskan kronologi kecelakaan.." disabled>
+                                        {{$data->kronologi}}
+                                    </textarea>
                                 </div>
                                 <h4 class="mb-3 mt-4">Penilaian Resiko</h4>
                                 <hr/>
@@ -57,9 +106,8 @@
                                         <input class="form-check-input" id="inline-radio5-severity" type="radio" disabled
                                                value="5" name="severity" @if($data->resiko_keparahan == 5) checked @endif>
                                         <label class="form-check-label" for="inline-radio5-severity">
-                                            <strong>(Catastrophic) : </strong>
-                                            Dampak polusi / pencemaran keluar dari perusahaan;
-                                            Dampak kerusakan lingkungan permanen, tidak bisa tergradasi alami.
+                                            <strong>(Catastrophic) :</strong>
+                                            Fatality / menyebabkan kematian atau cacat tetap.
                                         </label>
                                     </div>
                                 </div>
@@ -69,11 +117,9 @@
                                                value="4" name="severity" @if($data->resiko_keparahan == 4) checked @endif>
                                         <label class="form-check-label" for="inline-radio4-severity">
                                             <strong>(Major) : </strong>
-                                            Dampak pada seluruh area perusahaan. Pemulihan akibat dampak perlu waktu > 6
-                                            bulan;
-                                            Konsumsi energy yang tidak dapat diperbaharui dalam jumlah besar dan
-                                            kontinu;
-                                            Disyaratkan dalam perundangan/persyaratan lingkungan dengan Baku Mutu.
+                                            LTI (Lost Time Incident) / menyebabkan hilangnya hari kerja
+                                            lebih dari 2 x 24 jam, cacat tidak tetap, pekerja dipindahkan dari posisi
+                                            sebelumnya karena faktor kesehatan.
                                         </label>
                                     </div>
                                 </div>
@@ -83,10 +129,8 @@
                                                value="3" name="severity" @if($data->resiko_keparahan == 3) checked @endif>
                                         <label class="form-check-label" for="inline-radio3-severity">
                                             <strong>(Moderate) : </strong>
-                                            Dampak pencemaran pada beberapa bagian / dept, tetapi perlu penanganan
-                                            khusus/dibutuhkan untuk pemulihannya < 6 bulan;
-                                            Konsumsi energy yg tidak dapat diperbaharui dalam jumlah besar tetapi tidak
-                                            kontinu atau konsumsi dalam jumlah kecil tetapi kontinu.
+                                            MTC (Medical Treatment Case) / menyebabkan hilangnya hari kerja
+                                            kurang dari 2 x 24 jam, mendapatkan perawatan dari rumah sakit terdekat.
                                         </label>
                                     </div>
                                 </div>
@@ -96,9 +140,8 @@
                                                value="2" name="severity" @if($data->resiko_keparahan == 2) checked @endif>
                                         <label class="form-check-label" for="inline-radio2-severity">
                                             <strong>(Minor) : </strong>
-                                            Dampak pencemaran pada satu bagian / dept.;
-                                            Konsumsi energy yg tidak dapat diperbaharui dalam jumlah besar tetapi tidak
-                                            kontinu atau konsumsi dalam jumlah kecil tetapi kontinu.
+                                            FAC (First Aid Case) / menyebabkan luka ringan, tidak memerlukan
+                                            perawatan di rumah sakit hanya pertolongan P3K.
                                         </label>
                                     </div>
                                 </div>
@@ -108,10 +151,8 @@
                                                value="1" name="severity" @if($data->resiko_keparahan == 1) checked @endif>
                                         <label class="form-check-label" for="inline-radio1-severity">
                                             <strong>(Insignificant) : </strong>
-                                            Dampak pada area lokal dept, dapat ditangani oleh karyawan di area terkait
-                                            &/
-                                            dapat diperbaharukan / terdegradasi oleh lingkungan;
-                                            Konsumsi energy yg dalam jumlah kecil & tidak kontinu.
+                                            Near miss / Kondisi hampir celaka dan tidak menyebabkan luka
+                                            maupun gangguan kesehatan.
                                         </label>
                                     </div>
                                 </div>
@@ -195,28 +236,35 @@
                                 </div>
                                 <h5 class="mb-3 mt-4">Tingkat Risiko:</h5>
                                 <div class="form-group">
-                                    <label class="form-check-label" id="resiko-level">(Isi Form Penilaian Resiko di Atas
-                                        dengan Benar!)</label>
+                                    <label class="form-check-label" id="resiko-level">
+                                        (Isi Form Penilaian Resiko di Atas dengan Benar!)
+                                    </label>
                                 </div>
-
-                                <h4 class="mb-3 mt-4">Tindakan Korektif</h4>
+                                <h4 class="mb-3 mt-4">Foto</h4>
+                                <hr/>
+                                <div class="form-group row">
+                                    <label class="col-md-3 col-form-label" for="foto">Upload foto kejadian</label>
+                                    <div class="col-md-9">
+                                        <input name="foto" id="foto" type="file" disabled>
+                                        @if($data->photo)
+                                        <?php $path = Storage::url($data->photo); ?>
+                                        <img width="480" src="{{ url($path) }}">
+                                        @endif
+                                    </div>
+                                </div>
+                                <h4 class="mb-3 mt-4">Tindakan Perbaikan dan Pencegahan</h4>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="pic">PIC</label>
-                                    <input name="pic" class="form-control" id="pic" type="text"
-                                           placeholder="PIC" value="{{$data->pic}}" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="pelapor">Pelapor</label>
-                                    <input name="pelapor" class="form-control" id="pelapor" type="text"
-                                           placeholder="Pelapor" value="{{$data->pelapor}}" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="tindakan-korektif">Tindakan Korektif</label>
-                                    <textarea name="tindakan" class="form-control" id="tindakan-korektif" rows="6"
-                                              placeholder="Tuliskan tindakan korektif.." disabled>
+                                    <label for="tindakan">Tindakan</label>
+                                    <textarea name="tindakan" class="form-control" id="tindakan" rows="6"
+                                              placeholder="Tuliskan Tindakan.." disabled>
                                         {{$data->tindakan}}
                                     </textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="penanggung-jawab">Penanggung Jawab</label>
+                                    <input name="pj" class="form-control" id="penanggung-jawab" type="text"
+                                           placeholder="Penanggung Jawab" value="{{$data->penanggung_jawab}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="status">Status</label>
@@ -237,9 +285,32 @@
     </div>
 @endsection
 
-
 @section('javascript')
     <script type="text/javascript">
+        jumlahKorban = 1;
+
+        function addKorban() {
+            $(".data-korban:last").clone().appendTo(".list-data-korban");
+            if ($('.data-korban').length > 1) {
+                $("#reduce-korban").removeClass('btn-light');
+                $("#reduce-korban").addClass('btn-danger');
+                jumlahKorban += 1;
+                $('#jumlah-korban').val(jumlahKorban);
+            }
+        }
+
+        function reduceKorban() {
+            if ($('.data-korban').length > 1) {
+                $('.data-korban:last').remove();
+                jumlahKorban -= 1;
+                $('#jumlah-korban').val(jumlahKorban);
+            }
+            if ($('.data-korban').length <= 1) {
+                $("#reduce-korban").removeClass('btn-danger');
+                $("#reduce-korban").addClass('btn-light');
+            }
+        }
+
         likelihood_val = 0
         severity_val = 0
 

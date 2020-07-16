@@ -33,6 +33,15 @@ class KecelakaanController extends Controller
         return view('kecelakaan.add');
     }
 
+    public function indexDetail($id)
+    {
+        $data = Kecelakaan::where('id', $id)->first();
+        $dataKorban = KecelakaanKorban::where('id_inspeksi', $id)->get();
+        return view('kecelakaan.edit')
+            ->with('data', $data)
+            ->with('korbans', $dataKorban);
+    }
+
     public function fetch()
     {
         $kecelakaans = Kecelakaan::all();
