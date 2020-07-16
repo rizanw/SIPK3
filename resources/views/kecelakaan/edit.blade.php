@@ -74,9 +74,9 @@
                                 </div>
                                 <div class="form-group">
                                     <input type="button" class="btn btn-secondary" id="add-korban"
-                                           value="Tambah data korban" onclick="addKorban();">
+                                           value="Tambah data korban" onclick="addKorban();" disabled>
                                     <input type="button" class="btn btn-light" id="reduce-korban"
-                                           value="Kurangi data korban" onclick="reduceKorban();">
+                                           value="Kurangi data korban" onclick="reduceKorban();" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="akibat">Akibat Yang Ditimbulkan</label>
@@ -274,7 +274,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <input type="submit" value="Simpan" class="btn btn-primary">
+                                    <input type="submit" value="Simpan" class="btn btn-primary" disabled>
                                 </div>
                             </form>
                         </div>

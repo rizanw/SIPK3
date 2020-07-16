@@ -52,8 +52,8 @@
             {title:"Penanggung Jawab", field:"pj"},
             {title:"Status", field:"status"},
         ],
-        rowClick:function(e, row){ //trigger an alert message when the row is clicked
-            alert("Row " + row.getData().id + " Clicked!!!!");
+        rowClick:function(e, row){
+            window.location = "/inspeksi-kecelakaan/" + row.getData().id;
         },
     });
     table.setData("{{route('kecelakaan.fetch')}}");

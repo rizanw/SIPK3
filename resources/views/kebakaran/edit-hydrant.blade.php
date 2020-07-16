@@ -20,7 +20,8 @@
                                     <label for="hydrant">Pilih Hydrant</label>
                                     <select name="hydrant" class="form-control" id="hydrant" disabled>
                                         @foreach($hydrants as $hydrant)
-                                            <option @if($data->id_hydrant == $hydrant->id) selected @endif value="{{$hydrant->id}}">
+                                            <option @if($data->id_hydrant == $hydrant->id) selected
+                                                    @endif value="{{$hydrant->id}}">
                                                 {{$hydrant->kode}} ({{$hydrant->lokasi}})
                                             </option>
                                         @endforeach
@@ -304,7 +305,7 @@
                                 <hr/>
 
                                 <div>
-                                    <input type="submit" value="Simpan" class="btn btn-primary">
+                                    <input type="submit" value="Simpan" class="btn btn-primary" disabled>
                                 </div>
                             </form>
                         </div>

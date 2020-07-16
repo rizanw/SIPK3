@@ -33,11 +33,13 @@
                                         ditentukan?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-a" type="radio" value="1" name="a">
+                                            <input class="form-check-input" id="inline-radio1-a" type="radio" value="1"
+                                                   name="a">
                                             <label class="form-check-label" for="inline-radio1-a">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-a" type="radio" value="0" name="a">
+                                            <input class="form-check-input" id="inline-radio2-a" type="radio" value="0"
+                                                   name="a">
                                             <label class="form-check-label" for="inline-radio2-a">Tidak</label>
                                         </div>
                                     </div>
@@ -46,11 +48,13 @@
                                     <label class="col-md-5 col-form-label">b. APAR mudah dilihat dan dijangkau?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-b" type="radio" value="1" name="b">
+                                            <input class="form-check-input" id="inline-radio1-b" type="radio" value="1"
+                                                   name="b">
                                             <label class="form-check-label" for="inline-radio1-b">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-b" type="radio" value="0" name="b">
+                                            <input class="form-check-input" id="inline-radio2-b" type="radio" value="0"
+                                                   name="b">
                                             <label class="form-check-label" for="inline-radio2-b">Tidak</label>
                                         </div>
                                     </div>
@@ -60,11 +64,13 @@
                                         digunakan?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-c" type="radio" value="1" name="c">
+                                            <input class="form-check-input" id="inline-radio1-c" type="radio" value="1"
+                                                   name="c">
                                             <label class="form-check-label" for="inline-radio1-c">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-c" type="radio" value="0" name="c">
+                                            <input class="form-check-input" id="inline-radio2-c" type="radio" value="0"
+                                                   name="c">
                                             <label class="form-check-label" for="inline-radio2-c">Tidak</label>
                                         </div>
                                     </div>
@@ -74,11 +80,13 @@
                                         penuh?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-d" type="radio" value="1" name="d">
+                                            <input class="form-check-input" id="inline-radio1-d" type="radio" value="1"
+                                                   name="d">
                                             <label class="form-check-label" for="inline-radio1-d">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-d" type="radio" value="0" name="d">
+                                            <input class="form-check-input" id="inline-radio2-d" type="radio" value="0"
+                                                   name="d">
                                             <label class="form-check-label" for="inline-radio2-d">Tidak</label>
                                         </div>
                                     </div>
@@ -88,11 +96,13 @@
                                         baik?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-e" type="radio" value="1" name="e">
+                                            <input class="form-check-input" id="inline-radio1-e" type="radio" value="1"
+                                                   name="e">
                                             <label class="form-check-label" for="inline-radio1-e">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-e" type="radio" value="0" name="e">
+                                            <input class="form-check-input" id="inline-radio2-e" type="radio" value="0"
+                                                   name="e">
                                             <label class="form-check-label" for="inline-radio2-e">Tidak</label>
                                         </div>
                                     </div>
@@ -102,11 +112,13 @@
                                         (jika terdapat roda) dalam keadaan baik?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-f" type="radio" value="1" name="f">
+                                            <input class="form-check-input" id="inline-radio1-f" type="radio" value="1"
+                                                   name="f">
                                             <label class="form-check-label" for="inline-radio1-f">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-f" type="radio" value="0" name="f">
+                                            <input class="form-check-input" id="inline-radio2-f" type="radio" value="0"
+                                                   name="f">
                                             <label class="form-check-label" for="inline-radio2-f">Tidak</label>
                                         </div>
                                     </div>
@@ -116,11 +128,13 @@
                                         jelas serta menghadap ke luar?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-g" type="radio" value="1" name="g">
+                                            <input class="form-check-input" id="inline-radio1-g" type="radio" value="1"
+                                                   name="g">
                                             <label class="form-check-label" for="inline-radio1-g">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-g" type="radio" value="0" name="g">
+                                            <input class="form-check-input" id="inline-radio2-g" type="radio" value="0"
+                                                   name="g">
                                             <label class="form-check-label" for="inline-radio2-g">Tidak</label>
                                         </div>
                                     </div>
@@ -131,11 +145,13 @@
                                         rusak pada APAR?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-h" type="radio" value="1" name="h">
+                                            <input class="form-check-input" id="inline-radio1-h" type="radio" value="1"
+                                                   name="h">
                                             <label class="form-check-label" for="inline-radio1-h">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-h" type="radio" value="0" name="h">
+                                            <input class="form-check-input" id="inline-radio2-h" type="radio" value="0"
+                                                   name="h">
                                             <label class="form-check-label" for="inline-radio2-h">Tidak</label>
                                         </div>
                                     </div>
@@ -145,11 +161,13 @@
                                         fisik, korosif, dan bocor?</label>
                                     <div class="col-md-7 col-form-label">
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio1-i" type="radio" value="1" name="i">
+                                            <input class="form-check-input" id="inline-radio1-i" type="radio" value="1"
+                                                   name="i">
                                             <label class="form-check-label" for="inline-radio1-i">Ya</label>
                                         </div>
                                         <div class="form-check form-check-inline mr-1">
-                                            <input class="form-check-input" id="inline-radio2-i" type="radio" value="0" name="i">
+                                            <input class="form-check-input" id="inline-radio2-i" type="radio" value="0"
+                                                   name="i">
                                             <label class="form-check-label" for="inline-radio2-i">Tidak</label>
                                         </div>
                                     </div>
@@ -159,12 +177,10 @@
                                 <div>
                                     <input type="submit" value="Simpan" class="btn btn-primary">
                                 </div>
+                            </form>
                         </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 @endsection

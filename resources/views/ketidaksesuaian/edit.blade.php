@@ -226,7 +226,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <input type="submit" value="Simpan" class="btn btn-primary">
+                                    <input type="submit" value="Simpan" class="btn btn-primary" disabled>
                                 </div>
                             </form>
                         </div>

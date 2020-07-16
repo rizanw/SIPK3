@@ -52,6 +52,9 @@
                 {title:"Kode ID", field:"kode",},
                 {title:"Tanggal Inspeksi", field:"tanggal"},
             ],
+            rowClick:function(e, row){
+                window.location = "/inspeksi-kebakaran-aktif/" + row.getData().jenis.toLowerCase() + "/" + row.getData().id;
+            },
         });
         table.setData('{{route('kebakaran.fetch')}}')
     </script>
