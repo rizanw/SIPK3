@@ -33,9 +33,23 @@ class AlatKebakaran extends Controller
         return view('alat-kebakaran.add-apar');
     }
 
+    public function detailAparIndex($id)
+    {
+        $data = AlatKebakaranApar::where('id', $id)->first();
+        return view('alat-kebakaran.edit-apar')
+            ->with('data', $data);
+    }
+
     public function addHydrantIndex()
     {
         return view('alat-kebakaran.add-hydrant');
+    }
+
+    public function detailHydrantIndex($id)
+    {
+        $data = AlatKebakaranHydrant::where('id', $id)->first();
+        return view('alat-kebakaran.edit-hydrant')
+            ->with('data', $data);
     }
 
     public function fetch() {

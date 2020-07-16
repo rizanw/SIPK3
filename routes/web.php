@@ -42,10 +42,12 @@ Route::prefix('alat-kebakaran')->group(function () {
     Route::prefix('/apar')->group(function () {
         Route::get('/tambah', 'AlatKebakaran@addAparIndex')->name('kebakaran.alat.apar');
         Route::post('/post', 'AlatKebakaran@createApar')->name('kebakaran.alat.apar.create');
+        Route::get('/{id}', 'AlatKebakaran@detailAparIndex')->name('kebakaran.alat.apar.detail');
     });
     Route::prefix('/hydrant')->group(function () {
         Route::get('/tambah', 'AlatKebakaran@addHydrantIndex')->name('kebakaran.alat.hydrant');
         Route::post('/post', 'AlatKebakaran@createHydrant')->name('kebakaran.alat.hydrant.create');
+        Route::get('/{id}', 'AlatKebakaran@detailHydrantIndex')->name('kebakaran.alat.hydrant.detail');
     });
 });
 

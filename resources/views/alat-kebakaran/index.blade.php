@@ -57,42 +57,10 @@
                 {title:"Jenis", field:"jenis", width: 150},
                 {title:"Kode ID", field:"kode",},
                 {title:"Lokasi", field:"lokasi"},
-                {
-                    title: "Aksi",
-                    columns: [{
-                        formatter: deleteIcon,
-                        width: 90,
-                        align: "center",
-                        {{--cellClick: function(e, cell) {--}}
-                        {{--    if (confirm('Are you sure to delete "' + cell.getRow().getData().year + '" ?')) {--}}
-                        {{--        $.ajax({--}}
-                        {{--            url: "{{route('batch.delete')}}",--}}
-                        {{--            type: 'POST',--}}
-                        {{--            data: {--}}
-                        {{--                "_token": "{{ csrf_token() }}",--}}
-                        {{--                "id": cell.getRow().getData().id--}}
-                        {{--            },--}}
-                        {{--            success: function(result) {--}}
-                        {{--                table.setData("{{route('batch.data')}}");--}}
-                        {{--            }--}}
-                        {{--        });--}}
-                        {{--    }--}}
-                        {{--    return false;--}}
-                        {{--}--}}
-                    },
-                        {
-                            formatter: editIcon,
-                            width: 70,
-                            align: "center",
-                            {{--cellClick: function(e, cell) {--}}
-                            {{--    var url = "{{route('batch.edit', ':id')}}";--}}
-                            {{--    url = url.replace(':id', cell.getRow().getData().id);--}}
-                            {{--    window.location.href = url;--}}
-                            {{--}--}}
-                        },
-                    ]
-                },
             ],
+            rowClick:function(e, row){
+                window.location = "/alat-kebakaran/" + row.getData().jenis.toLowerCase() + "/" + row.getData().id;
+            },
         });
         table.setData("{{route('kebakaran.alat.fetch')}}");
 
