@@ -64,10 +64,28 @@ class KebakaranAktif extends Controller
         return view('kebakaran.add-apar')->with('apars', $apars);
     }
 
+    public function detailAparIndex($id)
+    {
+        $apars = AlatKebakaranApar::all();
+        $data = KebakaranAktifApar::where('id', $id)->first();
+        return view('kebakaran.edit-apar')
+            ->with('apars', $apars)
+            ->with('data', $data);
+    }
+
     public function addHydrantIndex()
     {
         $hydrants = AlatKebakaranHydrant::all();
         return view('kebakaran.add-hydrant')->with('hydrants', $hydrants);
+    }
+
+    public function detailHydrantIndex($id)
+    {
+        $hydrants = AlatKebakaranHydrant::all();
+        $data = KebakaranAktifHydrant::where('id', $id)->first();
+        return view('kebakaran.edit-hydrant')
+            ->with('hydrants', $hydrants)
+            ->with('data', $data);
     }
 
     public function createApar(Request $request)

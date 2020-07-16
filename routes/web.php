@@ -24,10 +24,12 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
     Route::get('/fetch', 'KebakaranAktif@fetch')->name('kebakaran.fetch');
     Route::prefix('/apar')->group(function () {
+        Route::get('/{id}', 'KebakaranAktif@detailAparIndex')->name('kebakaran.apar.detail');
         Route::get('/tambah', 'KebakaranAktif@addAparIndex')->name('kebakaran.apar.add');
         Route::post('/post', 'KebakaranAktif@createApar')->name('kebakaran.apar.create');
     });
     Route::prefix('/hydrant')->group(function () {
+        Route::get('/{id}', 'KebakaranAktif@detailHydrantIndex')->name('kebakaran.hydrant.detail');
         Route::get('/tambah', 'KebakaranAktif@addHydrantIndex')->name('kebakaran.hydrant.add');
         Route::post('/post', 'KebakaranAktif@createHydrant')->name('kebakaran.hydrant.create');
 
