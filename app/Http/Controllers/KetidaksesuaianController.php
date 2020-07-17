@@ -80,8 +80,8 @@ class KetidaksesuaianController extends Controller
             if($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $ext = $foto->getClientOriginalExtension();
-
-                $fotoPath = $foto->storeAs('ketidaksesuian', time().str_replace(' ', '', $request['temuan']).'.'.$ext);
+                $fotoName = time().str_replace(' ', '', $request['temuan']).'.'.$ext;
+                $fotoPath = $foto->storeAs('public/ketidaksesuian', $fotoName);
             }
 
             Ketidaksesuaian::create([

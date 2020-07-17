@@ -87,7 +87,8 @@ class KecelakaanController extends Controller
             if($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $ext = $foto->getClientOriginalExtension();
-                $fotoPath = $foto->storeAs('kecelakaan', time().str_replace(' ', '', $request['kejadian']).'.'.$ext);
+                $fotoName= time().str_replace(' ', '', $request['kejadian']).'.'.$ext;
+                $fotoPath = $foto->storeAs('public/kecelakaan', $fotoName);
             }
 
             $kecelakaan = Kecelakaan::create([
