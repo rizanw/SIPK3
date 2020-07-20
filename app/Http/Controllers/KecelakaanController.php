@@ -37,6 +37,7 @@ class KecelakaanController extends Controller
     {
         $data = Kecelakaan::where('id', $id)->first();
         $dataKorban = KecelakaanKorban::where('id_inspeksi', $id)->get();
+        if (!$data) return redirect()->route('kecelakaan')->with('fail', "Tidak ada data inspeksi tersebut!");
         return view('kecelakaan.edit')
             ->with('data', $data)
             ->with('korbans', $dataKorban);
@@ -55,7 +56,7 @@ class KecelakaanController extends Controller
                 'tanggal' => $kecelakaan->tanggal,
                 'korban' => $kecelakaan->jumlah_korban,
                 'pj' => $kecelakaan->penanggung_jawab,
-                'status' => $kecelakaan->status == 1? "Open" : "Close"
+                'status' => $kecelakaan->status == 1 ? "Open" : "Close"
             );
         }
 
@@ -84,10 +85,10 @@ class KecelakaanController extends Controller
 
         try {
             $fotoPath = null;
-            if($request->hasFile('foto')) {
+            if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $ext = $foto->getClientOriginalExtension();
-                $fotoName= time().str_replace(' ', '', $request['kejadian']).'.'.$ext;
+                $fotoName = time() . str_replace(' ', '', $request['kejadian']) . '.' . $ext;
                 $fotoPath = $foto->storeAs('public/kecelakaan', $fotoName);
             }
 
@@ -109,8 +110,8 @@ class KecelakaanController extends Controller
                 'status' => $request['status'],
             ]);
 
-            for($i = 0; $i < count($request['nama-korban']); $i++){
-                if($request['jumlahkorban'] == 0) break;
+            for ($i = 0; $i < count($request['nama-korban']); $i++) {
+                if ($request['jumlahkorban'] == 0) break;
 
                 KecelakaanKorban::create([
                     'id_inspeksi' => $kecelakaan->id,

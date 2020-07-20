@@ -68,6 +68,7 @@ class KebakaranAktif extends Controller
     {
         $apars = AlatKebakaranApar::all();
         $data = KebakaranAktifApar::where('id', $id)->first();
+        if (!$data) return redirect()->route('kebakaran')->with('fail', "Belum ada data inspeksi apar tersebut!");
         return view('kebakaran.edit-apar')
             ->with('apars', $apars)
             ->with('data', $data);
@@ -83,6 +84,7 @@ class KebakaranAktif extends Controller
     {
         $hydrants = AlatKebakaranHydrant::all();
         $data = KebakaranAktifHydrant::where('id', $id)->first();
+        if (!$data) return redirect()->route('kebakaran')->with('fail', "Belum ada data inspeksi hydrant tersebut!");
         return view('kebakaran.edit-hydrant')
             ->with('hydrants', $hydrants)
             ->with('data', $data);

@@ -35,6 +35,7 @@ class KetidaksesuaianController extends Controller
     public function indexDetail($id)
     {
         $data = Ketidaksesuaian::where('id', $id)->first();
+        if (!$data) return redirect()->route('ketidaksesuaian')->with('fail', "Tidak ada data inspeksi tersebut!");
         return view('ketidaksesuaian.edit')
             ->with('data', $data);
     }
@@ -52,7 +53,7 @@ class KetidaksesuaianController extends Controller
                 'lokasi' => $ketidaksesuaian->lokasi,
                 'pic' => $ketidaksesuaian->pic,
                 'tanggal' => $ketidaksesuaian->tanggal,
-                'status' => $ketidaksesuaian->status == 1? "Open": "Close",
+                'status' => $ketidaksesuaian->status == 1 ? "Open" : "Close",
             );
         }
 
@@ -67,8 +68,8 @@ class KetidaksesuaianController extends Controller
             'kategori' => 'required',
             'lokasi' => 'required',
             'foto' => 'mimes:jpeg,png,jpg|max:10024',
-//            'severity' => 'required',
-//            'likelihood' => 'required',
+            'severity' => 'required',
+            'likelihood' => 'required',
             'pic' => 'required',
             'pelapor' => 'required',
             'tindakan' => 'required',
@@ -77,10 +78,10 @@ class KetidaksesuaianController extends Controller
 
         try {
             $fotoPath = null;
-            if($request->hasFile('foto')) {
+            if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $ext = $foto->getClientOriginalExtension();
-                $fotoName = time().str_replace(' ', '', $request['temuan']).'.'.$ext;
+                $fotoName = time() . str_replace(' ', '', $request['temuan']) . '.' . $ext;
                 $fotoPath = $foto->storeAs('public/ketidaksesuian', $fotoName);
             }
 
@@ -98,7 +99,7 @@ class KetidaksesuaianController extends Controller
                 'status' => $request['status'],
             ]);
 
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             $errcode = $exception->getMessage();
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }

@@ -36,6 +36,7 @@ class AlatKebakaran extends Controller
     public function detailAparIndex($id)
     {
         $data = AlatKebakaranApar::where('id', $id)->first();
+        if (!$data) return redirect()->route('kebakaran.alat')->with('fail', "Belum ada data apar tersebut!");
         return view('alat-kebakaran.edit-apar')
             ->with('data', $data);
     }
@@ -48,11 +49,13 @@ class AlatKebakaran extends Controller
     public function detailHydrantIndex($id)
     {
         $data = AlatKebakaranHydrant::where('id', $id)->first();
+        if (!$data) return redirect()->route('kebakaran.alat')->with('fail', "Belum ada data hydrant tersebut!");
         return view('alat-kebakaran.edit-hydrant')
             ->with('data', $data);
     }
 
-    public function fetch() {
+    public function fetch()
+    {
         $apars = AlatKebakaranApar::all();
         $hydrants = AlatKebakaranHydrant::all();
 
@@ -90,7 +93,7 @@ class AlatKebakaran extends Controller
             'lokasi' => 'required',
         ]);
 
-        try{
+        try {
             $apar = AlatKebakaranApar::create([
                 'kode' => $request['kode'],
                 'jenis' => $request['jenis'],
@@ -99,7 +102,7 @@ class AlatKebakaran extends Controller
                 'berat' => $request['berat'],
                 'lokasi' => $request['lokasi']
             ]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $errcode = $exception->getMessage();
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
@@ -119,7 +122,7 @@ class AlatKebakaran extends Controller
                 'kode' => $request['kode'],
                 'lokasi' => $request['lokasi']
             ]);
-        }catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $errcode = $exception->getMessage();
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
