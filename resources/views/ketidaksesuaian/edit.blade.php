@@ -6,10 +6,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header"><strong>Detail</strong> <small>Inspeksi Ketidaksesuaian</small></div>
+                        <div class="card-header">
+                            <strong>Detail</strong> <small>Inspeksi Ketidaksesuaian</small>
+                            <div class="card-header-actions">
+                                <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status"
+                                       onclick="updateStatus();">
+                            </div>
+                        </div>
                         <div class="card-body">
-                            <form action="{{route('ketidaksesuaian.create')}}" method="post" enctype="multipart/form-data">
+                            <form action="" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" value="{{$data->id}}" name="id">
                                 <h4 class="mb-3">Informasi Temuan</h4>
                                 <hr/>
                                 <div class="form-group">
@@ -19,15 +26,18 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal Temuan</label>
-                                    <input name="tanggal" class="form-control" id="tanggal" type="date" value="{{$data->tanggal}}" disabled>
+                                    <input name="tanggal" class="form-control" id="tanggal" type="date"
+                                           value="{{$data->tanggal}}" disabled>
                                 </div>
                                 <div class="form-group">
                                     <label for="kategori-temuan">Kategori Temuan</label>
                                     <select name="kategori" class="form-control" id="kategori-temuan" disabled>
-                                        <option value="unsafe-action" @if($data->kategori == "unsafe-action") selected @endif>
+                                        <option value="unsafe-action"
+                                                @if($data->kategori == "unsafe-action") selected @endif>
                                             Unsafe Action
                                         </option>
-                                        <option value="unsafe-condition" @if($data->kategori == "unsafe-condition") selected @endif>
+                                        <option value="unsafe-condition"
+                                                @if($data->kategori == "unsafe-condition") selected @endif>
                                             Unsafe Condition
                                         </option>
                                     </select>
@@ -54,8 +64,10 @@
                                 <h5 class="mb-3">Severity / Keparahan</h5>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio5-severity" type="radio" disabled
-                                               value="5" name="severity" @if($data->resiko_keparahan == 5) checked @endif>
+                                        <input class="form-check-input" id="inline-radio5-severity" type="radio"
+                                               disabled
+                                               value="5" name="severity"
+                                               @if($data->resiko_keparahan == 5) checked @endif>
                                         <label class="form-check-label" for="inline-radio5-severity">
                                             <strong>(Catastrophic) : </strong>
                                             Dampak polusi / pencemaran keluar dari perusahaan;
@@ -65,8 +77,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio4-severity" type="radio" disabled
-                                               value="4" name="severity" @if($data->resiko_keparahan == 4) checked @endif>
+                                        <input class="form-check-input" id="inline-radio4-severity" type="radio"
+                                               disabled
+                                               value="4" name="severity"
+                                               @if($data->resiko_keparahan == 4) checked @endif>
                                         <label class="form-check-label" for="inline-radio4-severity">
                                             <strong>(Major) : </strong>
                                             Dampak pada seluruh area perusahaan. Pemulihan akibat dampak perlu waktu > 6
@@ -79,8 +93,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio3-severity" type="radio" disabled
-                                               value="3" name="severity" @if($data->resiko_keparahan == 3) checked @endif>
+                                        <input class="form-check-input" id="inline-radio3-severity" type="radio"
+                                               disabled
+                                               value="3" name="severity"
+                                               @if($data->resiko_keparahan == 3) checked @endif>
                                         <label class="form-check-label" for="inline-radio3-severity">
                                             <strong>(Moderate) : </strong>
                                             Dampak pencemaran pada beberapa bagian / dept, tetapi perlu penanganan
@@ -92,8 +108,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio2-severity" type="radio" disabled
-                                               value="2" name="severity" @if($data->resiko_keparahan == 2) checked @endif>
+                                        <input class="form-check-input" id="inline-radio2-severity" type="radio"
+                                               disabled
+                                               value="2" name="severity"
+                                               @if($data->resiko_keparahan == 2) checked @endif>
                                         <label class="form-check-label" for="inline-radio2-severity">
                                             <strong>(Minor) : </strong>
                                             Dampak pencemaran pada satu bagian / dept.;
@@ -104,8 +122,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio1-severity" type="radio" disabled
-                                               value="1" name="severity" @if($data->resiko_keparahan == 1) checked @endif>
+                                        <input class="form-check-input" id="inline-radio1-severity" type="radio"
+                                               disabled
+                                               value="1" name="severity"
+                                               @if($data->resiko_keparahan == 1) checked @endif>
                                         <label class="form-check-label" for="inline-radio1-severity">
                                             <strong>(Insignificant) : </strong>
                                             Dampak pada area lokal dept, dapat ditangani oleh karyawan di area terkait
@@ -118,8 +138,10 @@
                                 <h5 class="mb-3 mt-4">Likelihood / Kemungkinan</h5>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio5-likelihood" type="radio" disabled
-                                               value="5" name="likelihood" @if($data->resiko_kemungkinan == 5) checked @endif>
+                                        <input class="form-check-input" id="inline-radio5-likelihood" type="radio"
+                                               disabled
+                                               value="5" name="likelihood"
+                                               @if($data->resiko_kemungkinan == 5) checked @endif>
                                         <label class="form-check-label" for="inline-radio5-likelihood">
                                             <strong>(Very High) :</strong>
                                             Sering terjadi;
@@ -135,8 +157,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio4-likelihood" type="radio" disabled
-                                               value="4" name="likelihood" @if($data->resiko_kemungkinan == 4) checked @endif>
+                                        <input class="form-check-input" id="inline-radio4-likelihood" type="radio"
+                                               disabled
+                                               value="4" name="likelihood"
+                                               @if($data->resiko_kemungkinan == 4) checked @endif>
                                         <label class="form-check-label" for="inline-radio4-likelihood">
                                             <strong>(High) : </strong>
                                             Dapat terjadi, umumnya terjadi pada aktifitas rutin;
@@ -152,8 +176,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio3-likelihood" type="radio" disabled
-                                               value="3" name="likelihood" @if($data->resiko_kemungkinan == 3) checked @endif>
+                                        <input class="form-check-input" id="inline-radio3-likelihood" type="radio"
+                                               disabled
+                                               value="3" name="likelihood"
+                                               @if($data->resiko_kemungkinan == 3) checked @endif>
                                         <label class="form-check-label" for="inline-radio3-likelihood">
                                             <strong>(Medium) : </strong>
                                             Mungkin terjadi, umumnya terjadi pada aktifitas rutin;
@@ -167,8 +193,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio2-likelihood" type="radio" disabled
-                                               value="2" name="likelihood" @if($data->resiko_kemungkinan == 2) checked @endif>
+                                        <input class="form-check-input" id="inline-radio2-likelihood" type="radio"
+                                               disabled
+                                               value="2" name="likelihood"
+                                               @if($data->resiko_kemungkinan == 2) checked @endif>
                                         <label class="form-check-label" for="inline-radio2-likelihood">
                                             <strong>(Low) : </strong>
                                             Dapat terjadi, umumnya terjadi pada aktifitas rutin;
@@ -184,8 +212,10 @@
                                 </div>
                                 <div class="form-group">
                                     <div class="form-check form-check-inline mr-1">
-                                        <input class="form-check-input" id="inline-radio1-likelihood" type="radio" disabled
-                                               value="1" name="likelihood" @if($data->resiko_kemungkinan == 1) checked @endif>
+                                        <input class="form-check-input" id="inline-radio1-likelihood" type="radio"
+                                               disabled
+                                               value="1" name="likelihood"
+                                               @if($data->resiko_kemungkinan == 1) checked @endif>
                                         <label class="form-check-label" for="inline-radio1-likelihood">
                                             <strong>(Rare) : </strong>
                                             Umumnya terjadi pada kasus emergency;
@@ -222,7 +252,7 @@
                                     <label for="status">Status</label>
                                     <select name="status" id="status" class="form-control" disabled>
                                         <option @if($data->status == 1) selected @endif value="1">Open</option>
-                                        <option  @if($data->status == 0) selected @endif value="0">Close</option>
+                                        <option @if($data->status == 0) selected @endif value="0">Close</option>
                                     </select>
                                 </div>
                                 <div>
@@ -240,6 +270,19 @@
 
 @section('javascript')
     <script type="text/javascript">
+        $("#update-status").click(function () {
+            if ($("form input[type='submit']").prop('disabled')) {
+                $("form input[type='submit']").prop('disabled', false);
+                $("form #status").prop('disabled', false);
+                $("form").prop('action', "{{route('ketidaksesuaian.update.status')}}");
+            } else {
+                $("form input[type='submit']").prop('disabled', true);
+                $("form #status").prop('disabled', true);
+                $("form").prop('action', "");
+            }
+            $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+        });
+
         likelihood_val = 0
         severity_val = 0
 

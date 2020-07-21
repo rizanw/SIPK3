@@ -106,4 +106,13 @@ class KetidaksesuaianController extends Controller
 
         return redirect()->back()->with('success', "Berhasil: Inspeksi Ketidaksesuaian berhasil dibuat!");
     }
+
+    public function updateStatus(Request $request){
+        $ketidaksesuian = Ketidaksesuaian::find($request['id']);
+
+        $ketidaksesuian->status = $request['status'];
+        $ketidaksesuian->save();
+
+        return redirect()->back()->with('success', "Berhasil: Status Inspeksi Ketidaksesuaian berhasil diubah!");
+    }
 }
