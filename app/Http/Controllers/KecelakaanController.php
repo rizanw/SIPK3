@@ -75,8 +75,8 @@ class KecelakaanController extends Controller
             'akibat' => 'required',
             'jumlahkorban' => 'required',
             'kronologi' => 'required',
-//            'severity' => 'required',
-//            'likelihood' => 'required',
+            'severity' => 'required',
+            'likelihood' => 'required',
             'foto' => 'mimes:jpeg,png,jpg|max:10024',
             'tindakan' => 'required',
             'pj' => 'required',
@@ -127,5 +127,14 @@ class KecelakaanController extends Controller
         }
 
         return redirect()->back()->with('success', "Berhasil: Inspeksi Kecelakaan berhasil ditambahkan!");
+    }
+
+    public function updateStatus(Request $request){
+        $kecelakaan = Kecelakaan::find($request['id']);
+
+        $kecelakaan->status = $request['status'];
+        $kecelakaan->save();
+
+        return redirect()->back()->with('success', "Berhasil: Status Inspeksi Kecelakaan berhasil diubah!");
     }
 }

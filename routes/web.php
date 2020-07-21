@@ -64,5 +64,6 @@ Route::prefix('inspeksi-kecelakaan')->group(function () {
     Route::get('/fetch', 'KecelakaanController@fetch')->name('kecelakaan.fetch');
     Route::get('/tambah', 'KecelakaanController@indexAdd')->name('kecelakaan.add');
     Route::post('/post', 'KecelakaanController@create')->name('kecelakaan.create');
+    Route::post('/update/status', 'KecelakaanController@updateStatus')->name('kecelakaan.update.status');
     Route::get('/{id}', 'KecelakaanController@indexDetail')->name('kecelakaan.detail');
 });

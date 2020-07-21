@@ -9,8 +9,7 @@
                         <div class="card-header">
                             <strong>Detail</strong> <small>Inspeksi Ketidaksesuaian</small>
                             <div class="card-header-actions">
-                                <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status"
-                                       onclick="updateStatus();">
+                                <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
                             </div>
                         </div>
                         <div class="card-body">
