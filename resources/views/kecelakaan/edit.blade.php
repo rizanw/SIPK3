@@ -9,7 +9,9 @@
                         <div class="card-header">
                             <strong>Detail</strong> <small>Inspeksi Kecelakaan</small>
                             <div class="card-header-actions">
+                                @hasanyrole('admin')
                                 <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
+                                @endhasrole
                             </div>
                         </div>
                         <div class="card-body">
