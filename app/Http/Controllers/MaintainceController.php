@@ -55,7 +55,7 @@ class MaintainceController extends Controller
             ->with('cases', $kasus);
     }
 
-    public function createKetidaksesuian(Request $request)
+    public function create(Request $request)
     {
         $request->validate([
             'id_kasus' => 'required',
@@ -69,7 +69,7 @@ class MaintainceController extends Controller
             if ($request->hasFile('foto')) {
                 $foto = $request->file('foto');
                 $ext = $foto->getClientOriginalExtension();
-                $fotoName = time() . str_replace(' ', '', $request['temuan']) . '.' . $ext;
+                $fotoName = time() . str_replace(' ', '', $request['jenis']) . '.' . $ext;
                 $fotoPath = $foto->storeAs('public/maintaince', $fotoName);
             }
 

@@ -72,10 +72,10 @@ Route::prefix('maintaince')->group(function () {
     Route::get('/', 'MaintainceController@index')->name('maintaince');
     Route::prefix('/ketidaksesuian')->group(function () {
         Route::get('/tambah', 'MaintainceController@indexAddKetidaksesuian')->name('maintaince.ketidaksesuian.add');
-        Route::post('/post', 'MaintainceController@createKetidaksesuian')->name('maintaince.ketidaksesuian.post');
+        Route::post('/post', 'MaintainceController@create')->name('maintaince.ketidaksesuian.post');
     });
     Route::prefix('/kecelakaan')->group(function () {
         Route::get('/tambah', 'MaintainceController@indexAddKecelakaan')->name('maintaince.kecelakaan.add');
-        Route::post('/post', 'MaintainceController@indexAddKetidaksesuian')->name('maintaince.kecelakaan.post');
+        Route::post('/post', 'MaintainceController@create')->name('maintaince.kecelakaan.post');
     });
 });

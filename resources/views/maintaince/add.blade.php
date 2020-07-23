@@ -20,7 +20,7 @@
                                     <select name="id_kasus" class="form-control" id="kasus">
                                         @foreach($cases as $case)
                                             <option value="{{$case->id}}">
-                                                {{$case->temuan}} ({{$case->tanggal}})
+                                                {{$data->title == "Kecelakaan"?$case->kejadian:$case->temuan}} ({{$case->tanggal}})
                                             </option>
                                         @endforeach
                                     </select>

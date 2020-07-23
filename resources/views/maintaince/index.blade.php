@@ -17,10 +17,13 @@
                     </div>
                 @endif
                 <div class="row">
-                    <div class="col-10">
+                    <div class="col-8">
                     </div>
                     <div class="col-2">
-                        <a href="{{ route('maintaince.ketidaksesuian.add') }}" class="btn btn-block btn-primary">{{ __('Buat Laporan') }}</a>
+                        <a href="{{ route('maintaince.ketidaksesuian.add') }}" class="btn btn-block btn-primary">{{ __('Buat Laporan (Ketidaksesuian)') }}</a>
+                    </div>
+                    <div class="col-2">
+                        <a href="{{ route('maintaince.kecelakaan.add') }}" class="btn btn-block btn-primary">{{ __('Buat Laporan (Kecelakaan)') }}</a>
                     </div>
                 </div>
                 <div class="row mt-4">
