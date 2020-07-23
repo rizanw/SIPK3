@@ -31,7 +31,7 @@ class MaintainceController extends Controller
 
     public function indexAddKetidaksesuian()
     {
-        $data = (object) array(
+        $data = (object)array(
             'title' => 'Ketidaksesuian',
             'route' => route('maintaince.ketidaksesuian.post')
         );
@@ -44,7 +44,7 @@ class MaintainceController extends Controller
 
     public function indexAddKecelakaan()
     {
-        $data = (object) array(
+        $data = (object)array(
             'title' => 'Kecelakaan',
             'route' => route('maintaince.kecelakaan.post')
         );
@@ -53,6 +53,69 @@ class MaintainceController extends Controller
         return view('maintaince.add')
             ->with('data', $data)
             ->with('cases', $kasus);
+    }
+
+    public function indexDetailKetidaksesuian($id)
+    {
+        $maintaince = Maintaince::where('id', $id)->first();
+        $kasusMaintaince = Ketidaksesuaian::where('id', $maintaince->id_kasus)->first();
+        $kasus = Ketidaksesuaian::where('status', '1')->get();
+        $data = (object)array(
+            'title' => 'Ketidaksesuian',
+            'route' => route('maintaince.ketidaksesuian.post'),
+            'routeInspeksi' => route('ketidaksesuaian.detail', $maintaince->id_kasus)
+        );
+
+        return view('maintaince.edit')
+            ->with('data', $data)
+            ->with('maintaince', $maintaince)
+            ->with('maintainceCase', $kasusMaintaince)
+            ->with('cases', $kasus);
+    }
+
+    public function indexDetailKecelakaan($id)
+    {
+        $maintaince = Maintaince::where('id', $id)->first();
+        $kasusMaintaince = Kecelakaan::where('id', $maintaince->id_kasus)->first();
+        $kasus = Kecelakaan::where('status', '1')->get();
+        $data = (object)array(
+            'title' => 'Kecelakaan',
+            'route' => route('maintaince.kecelakaan.post'),
+            'routeInspeksi' => route('kecelakaan.detail', $maintaince->id_kasus)
+        );
+
+        return view('maintaince.edit')
+            ->with('data', $data)
+            ->with('maintaince', $maintaince)
+            ->with('maintainceCase', $kasusMaintaince)
+            ->with('cases', $kasus);
+    }
+
+    public function fetch()
+    {
+        $maintainces = Maintaince::all();
+
+        $data = array();
+        foreach ($maintainces as $maintaince){
+            $data[] = array(
+                'id' => $maintaince->id,
+                'jenis' => $maintaince->jenis,
+                'name' => $this->getName($maintaince->jenis, $maintaince->id_kasus),
+                'tanggal' => $maintaince->tanggal
+            );
+        }
+
+        return response()->json($data);
+    }
+
+    private function getName($jenis, $id) {
+        if($jenis == "kecelakaan"){
+            $res = Kecelakaan::where('id', $id)->first();
+            return $res->kejadian;
+        }elseif($jenis == "ketidaksesuian"){
+            $res = Ketidaksesuaian::where('id', $id)->first();
+            return $res->temuan;
+        }
     }
 
     public function create(Request $request)
@@ -81,7 +144,7 @@ class MaintainceController extends Controller
                 'deskripsi' => $request['deskripsi'],
             ]);
 
-        }catch (\Exception $exception) {
+        } catch (\Exception $exception) {
             $errcode = $exception->getMessage();
             return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
         }
