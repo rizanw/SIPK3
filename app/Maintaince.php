@@ -11,6 +11,7 @@ class Maintaince extends Model
     protected $fillable = [
         'jenis',
         'id_kasus',
+        'tanggal',
         'photo',
         'deskripsi',
     ];

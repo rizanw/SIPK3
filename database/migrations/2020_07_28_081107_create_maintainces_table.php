@@ -17,8 +17,9 @@ class CreateMaintaincesTable extends Migration
             $table->bigIncrements('id');
             $table->string('jenis');
             $table->unsignedBigInteger('id_kasus');
+            $table->date('tanggal');
             $table->string('photo');
-            $table->string('deskripsi');
+            $table->longText('deskripsi');
             $table->timestamps();
         });
     }

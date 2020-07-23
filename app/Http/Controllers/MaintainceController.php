@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Kecelakaan;
 use App\Ketidaksesuaian;
+use App\Maintaince;
 use Illuminate\Http\Request;
 
 class MaintainceController extends Controller
@@ -54,5 +55,37 @@ class MaintainceController extends Controller
             ->with('cases', $kasus);
     }
 
+    public function createKetidaksesuian(Request $request)
+    {
+        $request->validate([
+            'id_kasus' => 'required',
+            'deskripsi' => 'required',
+            'tanggal' => 'required',
+            'foto' => 'mimes:jpeg,png,jpg|max:10024',
+        ]);
 
+        try {
+            $fotoPath = null;
+            if ($request->hasFile('foto')) {
+                $foto = $request->file('foto');
+                $ext = $foto->getClientOriginalExtension();
+                $fotoName = time() . str_replace(' ', '', $request['temuan']) . '.' . $ext;
+                $fotoPath = $foto->storeAs('public/maintaince', $fotoName);
+            }
+
+            Maintaince::create([
+                'jenis' => strtolower($request['jenis']),
+                'id_kasus' => $request['id_kasus'],
+                'tanggal' => $request['tanggal'],
+                'photo' => $fotoPath,
+                'deskripsi' => $request['deskripsi'],
+            ]);
+
+        }catch (\Exception $exception) {
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->back()->with('success', "Berhasil: Laporan Maintaince Ketidaksesuaian berhasil dibuat!");
+    }
 }

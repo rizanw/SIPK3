@@ -10,15 +10,18 @@
                             <strong>Buat</strong> <small>Laporan Maintaince</small> ({{$data->title}})
                         </div>
                         <div class="card-body">
-                            <form action="{{$data->route}}" method="post">
+                            <form action="{{$data->route}}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="hidden" name="jenis" value="{{$data->title}}">
                                 <h4 class="mb-3">Pilih Kasus Inspeksi {{$data->title}}</h4>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="apar">Pilih Kasus</label>
-                                    <select name="apar" class="form-control" id="apar">
+                                    <label for="kasus">Pilih Kasus</label>
+                                    <select name="id_kasus" class="form-control" id="kasus">
                                         @foreach($cases as $case)
-                                            <option value="{{$case->id}}">{{$case->temuan}} ({{$case->tanggal}})</option>
+                                            <option value="{{$case->id}}">
+                                                {{$case->temuan}} ({{$case->tanggal}})
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -37,8 +40,8 @@
                                 <h4 class="mb-3 mt-4">Deskripsi Maintaince</h4>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="tindakan-korektif">Deskripsi</label>
-                                    <textarea name="deksripsi" class="form-control" id="deksripsi" rows="6"
+                                    <label for="deskripsi">Deskripsi</label>
+                                    <textarea name="deskripsi" class="form-control" id="deskripsi" rows="6"
                                               placeholder="Deskripsikan maintaince yang telah dilakukan.."></textarea>
                                 </div>
                                 <hr/>
