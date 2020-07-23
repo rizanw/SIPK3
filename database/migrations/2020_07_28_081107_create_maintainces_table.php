@@ -14,7 +14,11 @@ class CreateMaintaincesTable extends Migration
     public function up()
     {
         Schema::create('maintainces', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('jenis');
+            $table->unsignedBigInteger('id_kasus');
+            $table->string('photo');
+            $table->string('deskripsi');
             $table->timestamps();
         });
     }
