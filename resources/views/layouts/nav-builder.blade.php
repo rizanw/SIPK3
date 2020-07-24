@@ -12,6 +12,17 @@
             Dashboard
         </a>
     </li>
+    @hasanyrole('admin')
+    <li class="c-sidebar-nav-title">
+        Penjadwalan
+    </li>
+    <li class="c-sidebar-nav-item">
+        <a class="c-sidebar-nav-link" href="{{ route('maintaince') }}">
+            <i class="cil-calendar c-sidebar-nav-icon"></i>
+            Jadwal Inspeksi
+        </a>
+    </li>
+    @endhasrole
     <li class="c-sidebar-nav-title">
         Inspeksi
     </li>
@@ -43,6 +54,9 @@
         </a>
     </li>
     @endhasrole
+    <li class="c-sidebar-nav-title">
+        Maintaince
+    </li>
     @hasanyrole('admin|Maintainer')
     <li class="c-sidebar-nav-item">
         <a class="c-sidebar-nav-link" href="{{ route('maintaince') }}">
