@@ -96,7 +96,7 @@ class MaintainceController extends Controller
         $maintainces = Maintaince::all();
 
         $data = array();
-        foreach ($maintainces as $maintaince){
+        foreach ($maintainces as $maintaince) {
             $data[] = array(
                 'id' => $maintaince->id,
                 'jenis' => $maintaince->jenis,
@@ -108,11 +108,12 @@ class MaintainceController extends Controller
         return response()->json($data);
     }
 
-    private function getName($jenis, $id) {
-        if($jenis == "kecelakaan"){
+    private function getName($jenis, $id)
+    {
+        if ($jenis == "kecelakaan") {
             $res = Kecelakaan::where('id', $id)->first();
             return $res->kejadian;
-        }elseif($jenis == "ketidaksesuian"){
+        } elseif ($jenis == "ketidaksesuian") {
             $res = Ketidaksesuaian::where('id', $id)->first();
             return $res->temuan;
         }

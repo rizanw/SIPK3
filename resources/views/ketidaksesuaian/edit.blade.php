@@ -12,6 +12,10 @@
                                 @hasanyrole('admin')
                                 <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
                                 @endhasrole
+                                @hasanyrole('Maintainer')
+                                <input type="button" class="btn btn-sm btn-warning maintainer-job" value="Lakukan Maintaince"
+                                       onclick="location.href = '{{route("maintaince.ketidaksesuian.add")}}'">
+                                @endhasrole
                             </div>
                         </div>
                         <div class="card-body">
@@ -258,6 +262,10 @@
                                 </div>
                                 <div>
                                     <input type="submit" value="Simpan" class="btn btn-primary" disabled>
+                                    @hasanyrole('Maintainer')
+                                    <input type="button" class="btn btn-warning maintainer-job" value="Lakukan Maintaince"
+                                           onclick="location.href = '{{route("maintaince.ketidaksesuian.add")}}'">
+                                    @endhasrole
                                 </div>
                             </form>
                         </div>
@@ -281,7 +289,7 @@
                 $("form #status").prop('disabled', true);
                 $("form").prop('action', "");
             }
-            $('html, body').animate({scrollTop:$(document).height()}, 'slow');
+            $('html, body').animate({scrollTop: $(document).height()}, 'slow');
         });
 
         likelihood_val = 0
@@ -322,6 +330,13 @@
             likelihood_val = $('input:radio[name="likelihood"]:checked').val();
             severity_val = $('input:radio[name="severity"]:checked').val();
             count_resiko();
+
+            $status = $('#status').val();
+            if($status === '1'){
+                $(".maintainer-job").prop('disabled', false);
+            }else{
+                $(".maintainer-job").prop('disabled', true);
+            }
         });
     </script>
 @endsection

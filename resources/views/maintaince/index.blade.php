@@ -20,6 +20,7 @@
                             <div class="row">
                                 <div class="col-8">
                                 </div>
+                                @hasanyrole('admin|Maintainer')
                                 <div class="col-2">
                                     <a href="{{ route('maintaince.ketidaksesuian.add') }}"
                                        class="btn btn-block btn-primary">{{ __('Buat Laporan (Ketidaksesuian)') }}</a>
@@ -28,6 +29,7 @@
                                     <a href="{{ route('maintaince.kecelakaan.add') }}"
                                        class="btn btn-block btn-primary">{{ __('Buat Laporan (Kecelakaan)') }}</a>
                                 </div>
+                                @endhasrole
                             </div>
                             <div class="row mt-4">
                                 <div class="col-12">

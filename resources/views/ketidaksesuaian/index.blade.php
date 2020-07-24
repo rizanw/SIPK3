@@ -19,9 +19,11 @@
                 <div class="row">
                     <div class="col-10">
                     </div>
+                    @hasanyrole('admin|TimInspeksi')
                     <div class="col-2">
                         <a href="{{ route('ketidaksesuaian.add') }}" class="btn btn-block btn-primary">{{ __('Buat Inspeksi') }}</a>
                     </div>
+                    @endhasrole
                 </div>
                 <div class="row mt-4">
                     <div class="col-12">
