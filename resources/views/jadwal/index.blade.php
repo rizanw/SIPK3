@@ -13,7 +13,7 @@
                                 </div>
                                 @hasanyrole('admin')
                                 <div class="col-2">
-                                    <a href="{{ route('ketidaksesuaian.add') }}" class="btn btn-block btn-primary">{{ __('Buat Jadwal') }}</a>
+                                    <a href="{{ route('jadwal.add') }}" class="btn btn-block btn-primary">{{ __('Buat Jadwal') }}</a>
                                 </div>
                                 @endhasrole
                             </div>

@@ -85,5 +85,6 @@ Route::prefix('maintaince')->group(function () {
 
 Route::prefix('/jadwal')->group(function () {
     Route::get('/', 'JadwalController@index')->name('jadwal');
-
+    Route::get('/tambah', 'JadwalController@indexAdd')->name('jadwal.add');
+    Route::post('/post', 'JadwalController@create')->name('jadwal.create');
 });

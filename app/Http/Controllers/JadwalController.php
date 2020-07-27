@@ -26,4 +26,11 @@ class JadwalController extends Controller
         return view('jadwal.index');
     }
 
+
+    public function indexAdd()
+    {
+        return view('jadwal.add');
+    }
+
+
 }
