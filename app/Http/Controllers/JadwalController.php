@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jadwal;
 use Illuminate\Http\Request;
 
 class JadwalController extends Controller
@@ -29,6 +30,28 @@ class JadwalController extends Controller
     public function indexAdd()
     {
         return view('jadwal.add');
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'tanggal' => 'required',
+            'tim' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        try {
+            Jadwal::create([
+                'tanggal' => $request['tanggal'],
+                'tim' => $request['tim'],
+                'deskripsi' => $request['deskripsi'],
+            ]);
+        } catch (\Exception $exception) {
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->back()->with('success', "Berhasil: Jadwal berhasil ditambahkan!");
     }
 
 }

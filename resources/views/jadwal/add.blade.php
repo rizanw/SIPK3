@@ -15,8 +15,8 @@
                                 <h4 class="mb-3">Informasi Penjadwalan</h4>
                                 <hr/>
                                 <div class="form-group">
-                                    <label for="hydrant">Pilih Tim</label>
-                                    <select name="hydrant" class="form-control" id="hydrant">
+                                    <label for="tim">Pilih Tim</label>
+                                    <select name="tim" class="form-control" id="tim">
                                         <option value="TimInspeksi">Tim Inspeksi</option>
                                         <option value="PMK">Pemadam Kebakaran</option>
                                     </select>
