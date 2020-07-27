@@ -82,3 +82,8 @@ Route::prefix('maintaince')->group(function () {
         Route::get('/{id}', 'MaintainceController@indexDetailKecelakaan')->name('maintaince.kecelakaan.detail');
     });
 });
+
+Route::prefix('/jadwal')->group(function () {
+    Route::get('/', 'JadwalController@index')->name('jadwal');
+
+});
