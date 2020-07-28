@@ -56,6 +56,22 @@ class JadwalController extends Controller
         return response()->json($data);
     }
 
+    public function fetchByTim($tim)
+    {
+        $jadwals = Jadwal::where('tim', $tim)->get();
+
+        $data = array();
+        foreach ($jadwals as $jadwal){
+            $data[] = array(
+                'id' => $jadwal->id,
+                'tanggal' => $jadwal->tanggal,
+                'tim' => $jadwal->tim
+            );
+        }
+
+        return response()->json($data);
+    }
+
     public function create(Request $request)
     {
         $request->validate([
