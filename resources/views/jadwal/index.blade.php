@@ -45,6 +45,6 @@
                 window.location = "/jadwal/" + row.getData().id;
             },
         });
-        {{--table.setData("{{route('ketidaksesuaian.fetch')}}");--}}
+        table.setData("{{route('jadwal.fetch')}}");
     </script>
 @endsection
