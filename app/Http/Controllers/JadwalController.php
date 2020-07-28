@@ -32,6 +32,14 @@ class JadwalController extends Controller
         return view('jadwal.add');
     }
 
+    public function indexDetail($id)
+    {
+        $data = Jadwal::where('id', $id)->first();
+        if (!$data) return redirect()->route('home')->with('fail', "Tidak ada data jadwal tersebut!");
+        return view('jadwal.edit')
+            ->with('data', $data);
+    }
+
     public function fetch()
     {
         $jadwals = Jadwal::all();
