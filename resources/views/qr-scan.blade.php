@@ -1,25 +1,39 @@
 @extends('layouts.base')
 
 @section('content')
-    <video muted="" playsinline="" id="qr-video" width="100%" height="100%"></video>
+    <div class="container show_qrscan">
+        <video muted="" playsinline="" id="qr-video" width="100%" height="100%"></video>
+    </div>
+    <div class="no_qrscan">
+        <h2 style="text-align: center">Tidak ada kamera terdeteksi.</h2>
+    </div>
 @endsection
 
 @section('javascript')
-    <script type="text/javascript" src="{{asset('js/instascan.min.js')}}"></script>
-    <script type="text/javascript">
-        let scanner = new Instascan.Scanner({ video: document.getElementById('qr-video') });
-        scanner.addListener('scan', function (content) {
-            console.log(content);
-            window.open(content, '_blank');
-        });
-        Instascan.Camera.getCameras().then(function (cameras) {
-            if (cameras.length > 0) {
-                scanner.start(cameras[0]);
+    <script type="module">
+        import QrScanner from '{{asset('js/qr-scanner.min.js')}}';
+        QrScanner.WORKER_PATH = "{{asset('js/qr-scanner-worker.min.js')}}";
+
+        const video = document.getElementById("qr-video");
+        const qrScanArea = $(".show_qrscan");
+        const noCameraAlert = $(".no_qrscan");
+
+        function scan() {
+            const scanner = new QrScanner(video, result => {
+                scanner.destroy();
+                window.location(result, '_blank');
+            });
+            scanner.start();
+        }
+
+        QrScanner.hasCamera().then(response => {
+            if (!response) {
+                noCameraAlert.show();
             } else {
-                alert('No cameras found.');
+                qrScanArea.show();
             }
-        }).catch(function (e) {
-            console.error(e);
         });
+
+        scan();
     </script>
 @endsection
