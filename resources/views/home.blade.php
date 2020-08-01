@@ -2,14 +2,21 @@
 
 @section('content')
 
-          <div class="container-fluid">
-            <div class="fade-in">
-                @hasanyrole('PMK|TimInspeksi')
-                @include('home.table-jadwal')
-                @endrole
+    <div class="container-fluid">
+        <div class="fade-in">
+            @hasanyrole('PMK|TimInspeksi')
+            @include('home.table-jadwal')
+            @endrole
+            @hasanyrole('admin|PMK')
+            <div class="row">
+                @include('home.qr')
             </div>
-          </div>
-
+            @endrole
+        </div>
+    </div>
+    @hasanyrole('admin|PMK')
+        @include('home.qr-modal')
+    @endrole
 @endsection
 
 @section('javascript')

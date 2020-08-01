@@ -24,11 +24,23 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
     Route::get('/fetch', 'KebakaranAktif@fetch')->name('kebakaran.fetch');
     Route::prefix('/apar')->group(function () {
+        Route::get('/qr-download', function () {
+            $image = \QrCode::format('png')
+                ->size(500)
+                ->generate(\route('kebakaran.apar.add'));
+            return response($image)->header('Content-type','image/png');
+        })->name('kebakaran.apar.qr');
         Route::get('/tambah', 'KebakaranAktif@addAparIndex')->name('kebakaran.apar.add');
         Route::post('/post', 'KebakaranAktif@createApar')->name('kebakaran.apar.create');
         Route::get('/{id}', 'KebakaranAktif@detailAparIndex')->name('kebakaran.apar.detail');
     });
     Route::prefix('/hydrant')->group(function () {
+        Route::get('/qr-download', function () {
+            $image = \QrCode::format('png')
+                ->size(500)
+                ->generate(\route('kebakaran.hydrant.add'));
+            return response($image)->header('Content-type','image/png');
+        })->name('kebakaran.hydrant.qr');
         Route::get('/tambah', 'KebakaranAktif@addHydrantIndex')->name('kebakaran.hydrant.add');
         Route::post('/post', 'KebakaranAktif@createHydrant')->name('kebakaran.hydrant.create');
         Route::get('/{id}', 'KebakaranAktif@detailHydrantIndex')->name('kebakaran.hydrant.detail');
