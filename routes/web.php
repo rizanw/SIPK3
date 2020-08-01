@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/scan', function (){
+    return view('qr-scan');
+})->name('qr.scan');
 
 Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
