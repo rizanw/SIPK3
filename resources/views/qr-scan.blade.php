@@ -22,7 +22,7 @@
             const scanner = new QrScanner(video, result => {
                 scanner.destroy();
                 console.log(result)
-                window.location.location(result);
+                window.location.replace(result);
             });
             scanner.start();
         }
