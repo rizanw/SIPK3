@@ -1,10 +1,10 @@
 @extends('layouts.base')
 
 @section('content')
-    <div class="container show_qrscan">
+    <div class="container show_qrscan" style="display: none">
         <video muted="" playsinline="" id="qr-video" width="100%" height="100%"></video>
     </div>
-    <div class="no_qrscan">
+    <div class="no_qrscan" style="display: none">
         <h2 style="text-align: center">Tidak ada kamera terdeteksi.</h2>
     </div>
 @endsection
@@ -21,8 +21,8 @@
         function scan() {
             const scanner = new QrScanner(video, result => {
                 scanner.destroy();
-                alert(result);
-                window.location(result, '_blank');
+                console.log(result)
+                window.location.location(result);
             });
             scanner.start();
         }
