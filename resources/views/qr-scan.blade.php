@@ -21,6 +21,7 @@
         function scan() {
             const scanner = new QrScanner(video, result => {
                 scanner.destroy();
+                alert(result);
                 window.location(result, '_blank');
             });
             scanner.start();
