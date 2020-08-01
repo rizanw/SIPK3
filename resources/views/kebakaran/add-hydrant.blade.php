@@ -15,10 +15,9 @@
                                 <hr/>
                                 <div class="form-group">
                                     <label for="hydrant">Pilih Hydrant</label>
-                                    <select name="hydrant" class="form-control" id="hydrant">
-                                        <option selected>-- Pilih Hydrant --</option>
+                                    <select name="hydrant" class="form-control" id="hydrant" @if(count($hydrants) == 1) disabled @endif>
                                         @foreach($hydrants as $hydrant)
-                                            <option value="{{$hydrant->id}}">{{$hydrant->kode}} ({{$hydrant->lokasi}})
+                                            <option @if(count($hydrants) == 1) selected @endif value="{{$hydrant->id}}">{{$hydrant->kode}} ({{$hydrant->lokasi}})
                                             </option>
                                         @endforeach
                                     </select>

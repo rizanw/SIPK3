@@ -14,9 +14,6 @@
             @endrole
         </div>
     </div>
-    @hasanyrole('admin|PMK')
-        @include('home.qr-modal')
-    @endrole
 @endsection
 
 @section('javascript')

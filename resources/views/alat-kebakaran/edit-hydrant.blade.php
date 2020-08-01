@@ -13,6 +13,16 @@
                                 <h4 class="mb-3">Data Hydrant</h4>
                                 <hr/>
                                 <div class="form-group">
+                                    <label for="kode">QR Code APAR  </label>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            {!! QrCode::size(240)->generate(route('kebakaran.hydrant.add.byId', $data->id)); !!}
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-sm btn-info" href="{{route('kebakaran.hydrant.qr', $data->id)}}"> <i class="cil-data-transfer-down"></i>Download QR</a>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
                                     <label for="kode">Kode ID Hydrant</label>
                                     <input name="kode" class="form-control" id="kode" type="text"
                                            placeholder="ID Hydrant" value="{{$data->kode}}" disabled>

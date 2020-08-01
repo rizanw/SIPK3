@@ -64,11 +64,20 @@ class KebakaranAktif extends Controller
         return view('kebakaran.add-apar')->with('apars', $apars);
     }
 
+    public function addAparByIdIndex($id)
+    {
+        $apars = AlatKebakaranApar::where('id', $id)->get();
+        if (count($apars) == 0) return redirect()->route('kebakaran.alat')->with('fail', "Belum ada data apar tersebut!");
+
+        return view('kebakaran.add-apar')->with('apars', $apars);
+    }
+
     public function detailAparIndex($id)
     {
         $apars = AlatKebakaranApar::all();
         $data = KebakaranAktifApar::where('id', $id)->first();
         if (!$data) return redirect()->route('kebakaran')->with('fail', "Belum ada data inspeksi apar tersebut!");
+
         return view('kebakaran.edit-apar')
             ->with('apars', $apars)
             ->with('data', $data);
@@ -77,6 +86,14 @@ class KebakaranAktif extends Controller
     public function addHydrantIndex()
     {
         $hydrants = AlatKebakaranHydrant::all();
+        return view('kebakaran.add-hydrant')->with('hydrants', $hydrants);
+    }
+
+    public function addHydrantByIdIndex($id)
+    {
+        $hydrants = AlatKebakaranHydrant::where('id', $id)->get();
+        if (count($hydrants) == 0) return redirect()->route('kebakaran.alat')->with('fail', "Belum ada data hydrant tersebut!");
+
         return view('kebakaran.add-hydrant')->with('hydrants', $hydrants);
     }
 

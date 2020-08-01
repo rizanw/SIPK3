@@ -13,6 +13,16 @@
                                 <h4 class="mb-3">Data APAR</h4>
                                 <hr/>
                                 <div class="form-group">
+                                    <label for="kode">QR Code APAR  </label>
+                                    <div class="row mb-2">
+                                        <div class="col">
+                                            {!! QrCode::size(240)->generate(route('kebakaran.apar.add.byId', $data->id)); !!}
+                                        </div>
+                                    </div>
+                                    <a class="btn btn-sm btn-info" href="{{route('kebakaran.apar.qr', $data->id)}}"> <i class="cil-data-transfer-down"></i>Download QR</a>
+                                </div>
+                                <hr/>
+                                <div class="form-group">
                                     <label for="kode">Kode ID APAR</label>
                                     <input name="kode" class="form-control" id="kode" type="text"
                                            placeholder="ID APAR" value="{{$data->kode}}" disabled>
@@ -25,16 +35,25 @@
                                 <div class="form-group">
                                     <label for="jenis">Jenis APAR</label>
                                     <select name="jenis" class="form-control" id="jenis" disabled>
-                                        <option value="karbondioksida" @if($data->tipe == "karbondioksida") selected @endif>Karbondioksida (CO2)</option>
-                                        <option value="dry-powder" @if($data->tipe == "dry-powder") selected @endif>Dry Powder</option>
+                                        <option value="karbondioksida"
+                                                @if($data->tipe == "karbondioksida") selected @endif>Karbondioksida
+                                            (CO2)
+                                        </option>
+                                        <option value="dry-powder" @if($data->tipe == "dry-powder") selected @endif>Dry
+                                            Powder
+                                        </option>
                                         <option value="foam" @if($data->tipe == "foam") selected @endif>Foam</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="tipe">Tipe APAR</label>
                                     <select name="tipe" class="form-control" id="tipe" disabled>
-                                        <option value="store-presure" @if($data->tipe == "store-presure") selected @endif>Store Pressure</option>
-                                        <option value="catridge" @if($data->tipe == "catridge") selected @endif>Catridge</option>
+                                        <option value="store-presure"
+                                                @if($data->tipe == "store-presure") selected @endif>Store Pressure
+                                        </option>
+                                        <option value="catridge" @if($data->tipe == "catridge") selected @endif>
+                                            Catridge
+                                        </option>
                                         <option value="gas" @if($data->tipe == "gas") selected @endif>Gas</option>
                                     </select>
                                 </div>
