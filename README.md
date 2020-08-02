@@ -1,2 +1,5 @@
 # SIPK3
 SISTEM INFORMASI PELAPORAN KETIDAKSESUAIAN, KECELAKAAN KERJA, DAN INSPEKSI PROTEKSI KEBAKARAN
+
+### Setup Guide (Indonesia)
+[Baca di sini](https://github.com/rizanw/SIPK3/blob/master/SETUP_INDONESIA.md)
