@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home/scan', function (){
+Route::get('/home/scan', function () {
     return view('qr-scan');
 })->name('qr.scan');
 
@@ -27,11 +27,12 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
     Route::get('/', 'KebakaranAktif@index')->name('kebakaran');
     Route::get('/fetch', 'KebakaranAktif@fetch')->name('kebakaran.fetch');
     Route::prefix('/apar')->group(function () {
+        Route::get('/export', 'KebakaranAktif@exportApar')->name('kebakaran.apar.export');
         Route::get('/{id}/qr-download', function ($id) {
             $image = \QrCode::format('png')
                 ->size(500)
                 ->generate(\route('kebakaran.apar.add.byId', $id));
-            return response($image)->header('Content-type','image/png');
+            return response($image)->header('Content-type', 'image/png');
         })->name('kebakaran.apar.qr');
         Route::get('/tambah', 'KebakaranAktif@addAparIndex')->name('kebakaran.apar.add');
         Route::get('/tambah/{id}', 'KebakaranAktif@addAparByIdIndex')->name('kebakaran.apar.add.byId');
@@ -39,11 +40,12 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
         Route::get('/{id}', 'KebakaranAktif@detailAparIndex')->name('kebakaran.apar.detail');
     });
     Route::prefix('/hydrant')->group(function () {
+        Route::get('/export', 'KebakaranAktif@exportHydrant')->name('kebakaran.hydrant.export');
         Route::get('/{id}/qr-download', function ($id) {
             $image = \QrCode::format('png')
                 ->size(500)
                 ->generate(\route('kebakaran.hydrant.add.byId', $id));
-            return response($image)->header('Content-type','image/png');
+            return response($image)->header('Content-type', 'image/png');
         })->name('kebakaran.hydrant.qr');
         Route::get('/tambah', 'KebakaranAktif@addHydrantIndex')->name('kebakaran.hydrant.add');
         Route::get('/tambah/{id}', 'KebakaranAktif@addHydrantByIdIndex')->name('kebakaran.hydrant.add.byId');

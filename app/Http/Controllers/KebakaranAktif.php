@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\AlatKebakaranApar;
 use App\AlatKebakaranHydrant;
+use App\Exports\KebakaranAktifAparExport;
+use App\Exports\KebakaranAktifHydrantExport;
 use App\KebakaranAktifApar;
 use App\KebakaranAktifHydrant;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KebakaranAktif extends Controller
 {
@@ -199,4 +202,13 @@ class KebakaranAktif extends Controller
         return redirect()->back()->with('success', "Berhasil: Inspeksi Kebakaran Aktif Hydrant berhasil ditambahkan!");
     }
 
+    public function exportApar()
+    {
+        return Excel::download(new KebakaranAktifAparExport, time() . '-InspeksiApar.xlsx');
+    }
+
+    public function exportHydrant()
+    {
+        return Excel::download(new KebakaranAktifHydrantExport, time() . '-Inspeksi.xlsx');
+    }
 }

@@ -18,6 +18,16 @@
                                     <a href="{{ route('kebakaran.hydrant.add') }}" class="btn btn-block btn-primary">{{ __('Buat Inspeksi Hydrant') }}</a>
                                 </div>
                             </div>
+                            <div class="row mt-2">
+                                <div class="col-8">
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{ route('kebakaran.apar.export') }}" class="btn btn-block btn-success">{{ __('Unduh Inspeksi Apar Excel') }}</a>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{ route('kebakaran.hydrant.export') }}" class="btn btn-block btn-success">{{ __('Untuh Inspeksi Hydrant Excel') }}</a>
+                                </div>
+                            </div>
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <div id="example-table"></div>
