@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KetidaksesuaianExport;
 use Illuminate\Http\Request;
 use App\Ketidaksesuaian;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KetidaksesuaianController extends Controller
 {
@@ -107,12 +109,18 @@ class KetidaksesuaianController extends Controller
         return redirect()->back()->with('success', "Berhasil: Inspeksi Ketidaksesuaian berhasil dibuat!");
     }
 
-    public function updateStatus(Request $request){
+    public function updateStatus(Request $request)
+    {
         $ketidaksesuian = Ketidaksesuaian::find($request['id']);
 
         $ketidaksesuian->status = $request['status'];
         $ketidaksesuian->save();
 
         return redirect()->back()->with('success', "Berhasil: Status Inspeksi Ketidaksesuaian berhasil diubah!");
+    }
+
+    public function export()
+    {
+        return Excel::download(new KetidaksesuaianExport, time() . '-ketidaksesuian.xlsx');
     }
 }

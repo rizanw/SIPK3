@@ -9,12 +9,16 @@
                         <div class="card-header"><h4>Daftar Inspeksi Ketidaksesuaian</h4></div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-10">
+                                <div class="col-8">
                                 </div>
                                 @hasanyrole('admin|TimInspeksi|PJA')
                                 <div class="col-2">
                                     <a href="{{ route('ketidaksesuaian.add') }}"
                                        class="btn btn-block btn-primary">{{ __('Buat Inspeksi') }}</a>
+                                </div>
+                                <div class="col-2">
+                                    <a href="{{ route('ketidaksesuaian.export') }}"
+                                       class="btn btn-block btn-success">{{ __('Unduh Excel') }}</a>
                                 </div>
                                 @endhasrole
                             </div>
@@ -26,7 +30,6 @@
                         </div>
                     </div>
                 </div>
-                ∑
             </div>
         </div>
     </div>

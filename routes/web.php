@@ -69,6 +69,7 @@ Route::prefix('alat-kebakaran')->group(function () {
 
 Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
     Route::get('/', 'KetidaksesuaianController@index')->name('ketidaksesuaian');
+    Route::get('/export', 'KetidaksesuaianController@export')->name('ketidaksesuaian.export');
     Route::get('/fetch', 'KetidaksesuaianController@fetch')->name('ketidaksesuaian.fetch');
     Route::get('/tambah', 'KetidaksesuaianController@indexAdd')->name('ketidaksesuaian.add');
     Route::post('/post', 'KetidaksesuaianController@create')->name('ketidaksesuaian.create');
@@ -79,6 +80,7 @@ Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
 Route::prefix('inspeksi-kecelakaan')->group(function () {
     Route::get('/', 'KecelakaanController@index')->name('kecelakaan');
     Route::get('/fetch', 'KecelakaanController@fetch')->name('kecelakaan.fetch');
+    Route::get('/export', 'KecelakaanController@export')->name('kecelakaan.export');
     Route::get('/tambah', 'KecelakaanController@indexAdd')->name('kecelakaan.add');
     Route::post('/post', 'KecelakaanController@create')->name('kecelakaan.create');
     Route::post('/update/status', 'KecelakaanController@updateStatus')->name('kecelakaan.update.status');

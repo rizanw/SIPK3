@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KecelakaanExport;
 use App\Kecelakaan;
 use App\KecelakaanKorban;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KecelakaanController extends Controller
 {
@@ -129,12 +131,18 @@ class KecelakaanController extends Controller
         return redirect()->back()->with('success', "Berhasil: Inspeksi Kecelakaan berhasil ditambahkan!");
     }
 
-    public function updateStatus(Request $request){
+    public function updateStatus(Request $request)
+    {
         $kecelakaan = Kecelakaan::find($request['id']);
 
         $kecelakaan->status = $request['status'];
         $kecelakaan->save();
 
         return redirect()->back()->with('success', "Berhasil: Status Inspeksi Kecelakaan berhasil diubah!");
+    }
+
+    public function export()
+    {
+        return Excel::download(new KecelakaanExport, time() . '-kecelakaan.xlsx');
     }
 }
