@@ -12,6 +12,14 @@
                 @include('home.qr')
             </div>
             @endrole
+            <div class="row">
+                @include('home.inspeksi')
+            </div>
+            @hasanyrole('admin|Maintainer')
+            <div class="row">
+                @include('home.maintaince')
+            </div>
+            @endrole
         </div>
     </div>
 @endsection

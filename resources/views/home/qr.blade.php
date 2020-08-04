@@ -1,4 +1,4 @@
-<div class="col-sm-6 col-md-4">
+<div class="col">
     <div class="card text-white bg-warning text-center">
         <a href="{{route('qr.scan')}}" class="btn btn-warning card-body">
             <strong class="card-bodyquote">
