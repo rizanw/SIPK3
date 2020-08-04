@@ -11,7 +11,7 @@
                             <div class="row">
                                 <div class="col-10">
                                 </div>
-                                @hasanyrole('admin|TimInspeksi')
+                                @hasanyrole('admin|TimInspeksi|PJA')
                                 <div class="col-2">
                                     <a href="{{ route('ketidaksesuaian.add') }}"
                                        class="btn btn-block btn-primary">{{ __('Buat Inspeksi') }}</a>
