@@ -152,4 +152,18 @@ class MaintainceController extends Controller
 
         return redirect()->back()->with('success', "Berhasil: Laporan Maintaince Ketidaksesuaian berhasil dibuat!");
     }
+
+    public function destroy($type, $id_kasus)
+    {
+        try {
+            Maintaince::where([
+                ['jenis', '=', $type],
+                ['id_kasus', '=', $id_kasus]
+            ])->delete();
+        }catch (\Exception $exception){
+            return $exception;
+        }
+
+        return true;
+    }
 }

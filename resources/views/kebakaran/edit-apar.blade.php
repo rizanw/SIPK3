@@ -6,7 +6,19 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header"><strong>Detail</strong> <small>Inspeksi Kebakaran Aktif</small> (APAR)
+                        <div class="card-header">
+                            <strong>Detail</strong> <small>Inspeksi Kebakaran Aktif</small> (APAR)
+                            @hasanyrole('admin')
+                            <div class="card-header-actions">
+                                <form action="{{route('kebakaran.apar.delete')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$data->id}}">
+                                    <input type="submit" class="btn btn-sm btn-danger" id="delete"
+                                           value="Hapus Inspeksi"
+                                           onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">
+                                </form>
+                            </div>
+                            @endhasrole
                         </div>
                         <div class="card-body">
                             <form action="{{route('kebakaran.apar.create')}}" method="post">

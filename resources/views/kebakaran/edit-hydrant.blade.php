@@ -8,8 +8,18 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>Detail</strong>
-                            <small>Inspeksi Kebakaran Aktif</small>
-                            (Hydrant)
+                            <small>Inspeksi Kebakaran Aktif</small> (Hydrant)
+                            @hasanyrole('admin')
+                            <div class="card-header-actions">
+                                <form action="{{route('kebakaran.hydrant.delete')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$data->id}}">
+                                    <input type="submit" class="btn btn-sm btn-danger" id="delete"
+                                           value="Hapus Inspeksi"
+                                           onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">
+                                </form>
+                            </div>
+                            @endhasrole
                         </div>
                         <div class="card-body">
                             <form action="{{route('kebakaran.hydrant.create')}}" method="post">

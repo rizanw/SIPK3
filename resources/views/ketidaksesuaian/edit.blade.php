@@ -10,7 +10,14 @@
                             <strong>Detail</strong> <small>Inspeksi Ketidaksesuaian</small>
                             <div class="card-header-actions">
                                 @hasanyrole('admin')
-                                <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
+                                <form action="{{route('ketidaksesuaian.delete')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$data->id}}">
+                                    <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
+                                    <input type="submit" class="btn btn-sm btn-danger" id="delete"
+                                           value="Hapus Inspeksi"
+                                           onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">
+                                </form>
                                 @endhasrole
                                 @hasanyrole('Maintainer')
                                 <input type="button" class="btn btn-sm btn-warning maintainer-job" value="Lakukan Maintaince"

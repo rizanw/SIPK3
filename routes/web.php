@@ -37,6 +37,7 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
         Route::get('/tambah', 'KebakaranAktif@addAparIndex')->name('kebakaran.apar.add');
         Route::get('/tambah/{id}', 'KebakaranAktif@addAparByIdIndex')->name('kebakaran.apar.add.byId');
         Route::post('/post', 'KebakaranAktif@createApar')->name('kebakaran.apar.create');
+        Route::post('/delete', 'KebakaranAktif@destroyApar')->name('kebakaran.apar.delete');
         Route::get('/{id}', 'KebakaranAktif@detailAparIndex')->name('kebakaran.apar.detail');
     });
     Route::prefix('/hydrant')->group(function () {
@@ -50,6 +51,7 @@ Route::prefix('inspeksi-kebakaran-aktif')->group(function () {
         Route::get('/tambah', 'KebakaranAktif@addHydrantIndex')->name('kebakaran.hydrant.add');
         Route::get('/tambah/{id}', 'KebakaranAktif@addHydrantByIdIndex')->name('kebakaran.hydrant.add.byId');
         Route::post('/post', 'KebakaranAktif@createHydrant')->name('kebakaran.hydrant.create');
+        Route::post('/delete', 'KebakaranAktif@destroyHydrant')->name('kebakaran.hydrant.delete');
         Route::get('/{id}', 'KebakaranAktif@detailHydrantIndex')->name('kebakaran.hydrant.detail');
     });
 });
@@ -74,6 +76,7 @@ Route::prefix('inspeksi-ketidaksesuaian')->group(function () {
     Route::get('/export', 'KetidaksesuaianController@export')->name('ketidaksesuaian.export');
     Route::get('/fetch', 'KetidaksesuaianController@fetch')->name('ketidaksesuaian.fetch');
     Route::get('/tambah', 'KetidaksesuaianController@indexAdd')->name('ketidaksesuaian.add');
+    Route::post('/delete', 'KetidaksesuaianController@destroy')->name('ketidaksesuaian.delete');
     Route::post('/post', 'KetidaksesuaianController@create')->name('ketidaksesuaian.create');
     Route::post('/update/status', 'KetidaksesuaianController@updateStatus')->name('ketidaksesuaian.update.status');
     Route::get('/{id}', 'KetidaksesuaianController@indexDetail')->name('ketidaksesuaian.detail');
@@ -85,6 +88,7 @@ Route::prefix('inspeksi-kecelakaan')->group(function () {
     Route::get('/export', 'KecelakaanController@export')->name('kecelakaan.export');
     Route::get('/tambah', 'KecelakaanController@indexAdd')->name('kecelakaan.add');
     Route::post('/post', 'KecelakaanController@create')->name('kecelakaan.create');
+    Route::post('/delete', 'KecelakaanController@destroy')->name('kecelakaan.delete');
     Route::post('/update/status', 'KecelakaanController@updateStatus')->name('kecelakaan.update.status');
     Route::get('/{id}', 'KecelakaanController@indexDetail')->name('kecelakaan.detail');
 });

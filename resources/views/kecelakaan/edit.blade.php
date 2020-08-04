@@ -10,10 +10,19 @@
                             <strong>Detail</strong> <small>Inspeksi Kecelakaan</small>
                             <div class="card-header-actions">
                                 @hasanyrole('admin')
-                                <input type="button" class="btn btn-sm btn-info" id="update-status" value="Ubah Status">
+                                <form action="{{route('kecelakaan.delete')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$data->id}}">
+                                    <input type="button" class="btn btn-sm btn-info" id="update-status"
+                                           value="Ubah Status">
+                                    <input type="submit" class="btn btn-sm btn-danger" id="delete"
+                                           value="Hapus Inspeksi"
+                                           onclick="return confirm('Apakah Anda Yakin Untuk Menghapus?')">
+                                </form>
                                 @endhasrole
                                 @hasanyrole('Maintainer')
-                                <input type="button" class="btn btn-sm btn-warning maintainer-job" value="Lakukan Maintaince"
+                                <input type="button" class="btn btn-sm btn-warning maintainer-job"
+                                       value="Lakukan Maintaince"
                                        onclick="location.href = '{{route("maintaince.kecelakaan.add")}}'">
                                 @endhasrole
                             </div>
@@ -313,7 +322,8 @@
                                 <div>
                                     <input type="submit" value="Simpan" class="btn btn-primary" disabled>
                                     @hasanyrole('Maintainer')
-                                    <input type="button" class="btn btn-warning maintainer-job" value="Lakukan Maintaince"
+                                    <input type="button" class="btn btn-warning maintainer-job"
+                                           value="Lakukan Maintaince"
                                            onclick="location.href = '{{route("maintaince.kecelakaan.add")}}'">
                                     @endhasrole
                                 </div>
@@ -405,9 +415,9 @@
             count_resiko();
 
             $status = $('#status').val();
-            if($status === '1'){
+            if ($status === '1') {
                 $(".maintainer-job").prop('disabled', false);
-            }else{
+            } else {
                 $(".maintainer-job").prop('disabled', true);
             }
         });

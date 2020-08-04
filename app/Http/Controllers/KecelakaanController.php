@@ -145,4 +145,18 @@ class KecelakaanController extends Controller
     {
         return Excel::download(new KecelakaanExport, time() . '-kecelakaan.xlsx');
     }
+
+    public function destroy(Request $request)
+    {
+        try {
+            $data = Kecelakaan::where('id', $request['id']);
+            (new MaintainceController)->destroy('kecelakaan', $data->first()->id);
+            $data->delete();
+        }catch (\Exception $exception){
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->route('kecelakaan')->with('success', "Berhasil: Inspeksi Kecelakaan berhasil dihapus!");
+    }
 }

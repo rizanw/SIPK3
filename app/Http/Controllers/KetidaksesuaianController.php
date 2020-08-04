@@ -123,4 +123,18 @@ class KetidaksesuaianController extends Controller
     {
         return Excel::download(new KetidaksesuaianExport, time() . '-ketidaksesuian.xlsx');
     }
+
+    public function destroy(Request $request)
+    {
+        try {
+            $data = Ketidaksesuaian::where('id', $request['id']);
+            (new MaintainceController)->destroy('ketidaksesuian', $data->first()->id);
+            $data->delete();
+        }catch (\Exception $exception){
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->route('ketidaksesuaian')->with('success', "Berhasil: Inspeksi Ketidaksesuaian berhasil dihapus!");
+    }
 }

@@ -211,4 +211,28 @@ class KebakaranAktif extends Controller
     {
         return Excel::download(new KebakaranAktifHydrantExport, time() . '-Inspeksi.xlsx');
     }
+
+    public function destroyApar(Request $request)
+    {
+        try {
+            KebakaranAktifApar::where('id', $request['id'])->delete();
+        }catch (\Exception $exception){
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->route('kebakaran')->with('success', "Berhasil: Inspeksi Kebakaran Aktif Apar berhasil dihapus!");
+    }
+
+    public function destroyHydrant(Request $request)
+    {
+        try {
+            KebakaranAktifHydrant::where('id', $request['id'])->delete();
+        }catch (\Exception $exception){
+            $errcode = $exception->getMessage();
+            return redirect()->back()->with('fail', "Gagal: Terjadi kesalahan! " . $errcode);
+        }
+
+        return redirect()->route('kebakaran')->with('success', "Berhasil: Inspeksi Kebakaran Hydrant berhasil dihapus!");
+    }
 }
